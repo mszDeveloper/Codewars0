@@ -117,7 +117,68 @@ namespace Codewars0
 
         }
 
+        public static void ReverseString(ref StringBuilder str)
+        {
+            for (int index = 0; index < str.Length / 2; index++)
+            {
+                var tmpChar = str[index];
+                str[index] = str[str.Length - 1 - index];
+                str[str.Length - 1 - index] = tmpChar;
+            }
+        }
 
+        public static string SpinWords(string sentence)
+        {
+            var result = new StringBuilder();
+            var tmpWord = new StringBuilder();
+            foreach (var item in sentence)
+            {
+                if (!item.Equals(' '))
+                {
+                    tmpWord.Append(item);
+                    continue;
+                }
+                if (tmpWord.Length < 5)
+                {
+                    result.Append(tmpWord + " ");
+                }
+                else
+                {
+                    ReverseString(ref tmpWord);
+                    result.Append(tmpWord + " ");
+                }
+                tmpWord.Clear();
+            }
+            //Last word.
+            if (tmpWord.Length < 5 && !sentence.Last().Equals(' '))
+            {
+                result.Append(tmpWord);
+            }
+            if (tmpWord.Length >= 5)
+            {
+                ReverseString(ref tmpWord);
+                result.Append(tmpWord);
+            }
+            return result.ToString();
+            //return String.Join(" ", sentence.Split(' ').Select(str => str.Length >= 5 ? new string(str.Reverse().ToArray()) : str));
+            /*
+             * 
+             *   public static string SpinWords(string sentence)
+                  {
+                    string[] words = sentence.Split();
+
+                    for (int i = 0; i < words.Length; i++)
+                    {
+                        if (words[i].Length >= 5)
+                        {
+                            words[i] = new string(words[i].Reverse().ToArray());
+                        }
+                    }
+
+                    return string.Join(" ", words);
+                  }
+             */
+        }
 
 
 
