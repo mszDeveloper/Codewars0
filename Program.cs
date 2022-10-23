@@ -7,7 +7,7 @@ namespace Codewars0
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            bool result = Kata.Parentheses.ValidParentheses2("(())((()())())");
+            bool result = Kata.Narcissistic(371);
             Console.WriteLine(result);
 
         }

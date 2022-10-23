@@ -180,8 +180,31 @@ namespace Codewars0
              */
         }
 
-
-
+        public static bool Narcissistic(int value)
+        {
+            int digitCount = 0;
+            int currentValue = value;
+            while (true)
+            {
+                currentValue = currentValue / 10;
+                digitCount++;
+                if (currentValue.Equals(0))
+                {
+                    break;
+                }
+            }
+            if (digitCount.Equals(1)) return true;
+            currentValue = value;
+            long sum = 0;
+            int remainder = 0;
+            for (int i = 0; i < digitCount; i++)
+            {
+                remainder = currentValue % 10;
+                sum += Convert.ToInt64(Math.Pow(remainder, digitCount));
+                currentValue = currentValue / 10;
+            }
+            return sum.Equals(value);
+        }
 
 
 
