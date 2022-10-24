@@ -126,7 +126,6 @@ namespace Codewars0
                 str[str.Length - 1 - index] = tmpChar;
             }
         }
-
         public static string SpinWords(string sentence)
         {
             var result = new StringBuilder();
@@ -206,10 +205,62 @@ namespace Codewars0
             return sum.Equals(value);
         }
 
-
-
-
-
+        public class Revrot
+        {
+            public static string RevRot(string strng, int sz)
+            {
+                StringBuilder newStrng = new();
+                StringBuilder chunk = new();
+                int numberCurrentSybol = 0;
+                foreach (var item in strng)
+                {
+                    numberCurrentSybol++;
+                    chunk.Append(item);
+                    if (chunk.Length.Equals(sz) || numberCurrentSybol.Equals(strng.Length))
+                    {
+                        int sumCubes = CalcSumCubes(chunk);
+                        if ((sumCubes % 2).Equals(0))
+                        {
+                            ReverseString(ref chunk);
+                        }
+                        else
+                        {
+                            RotateString(ref chunk);
+                        }
+                        newStrng.Append(chunk);
+                        chunk.Clear();
+                    }
+                }
+                return newStrng.ToString();
+            }
+            public static int CalcSumCubes(StringBuilder number)
+            {
+                int sum = 0;
+                for (int i = 0; i < number.Length; i++)
+                {
+                    sum += Convert.ToInt32(Math.Pow(Convert.ToInt32(number[i]), 3));
+                }
+                return sum;
+            }
+            public static void ReverseString(ref StringBuilder str)
+            {
+                for (int index = 0; index < str.Length / 2; index++)
+                {
+                    var tmpChar = str[index];
+                    str[index] = str[str.Length - 1 - index];
+                    str[str.Length - 1 - index] = tmpChar;
+                }
+            }
+            public static void RotateString(ref StringBuilder str)
+            {
+                var first = str[0];
+                for (int i = 0; i < str.Length - 1; i++)
+                {
+                    str[i] = str[i + 1];
+                }
+                str[str.Length - 1] = first;
+            }
+        }
 
     }
 }
