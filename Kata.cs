@@ -212,10 +212,8 @@ namespace Codewars0
                 if (strng.Length.Equals(0) || sz <= 0 || strng.Length < sz) return "";
                 StringBuilder newStrng = new();
                 StringBuilder chunk = new();
-                int numberCurrentSybol = 0;
                 foreach (var item in strng)
                 {
-                    numberCurrentSybol++;
                     chunk.Append(item);
                     if (chunk.Length.Equals(sz))
                     {
@@ -260,6 +258,14 @@ namespace Codewars0
                     str[i] = str[i + 1];
                 }
                 str[str.Length - 1] = first;
+            }
+        }
+
+        public class WeightSort
+        {
+            public static string orderWeight(string strng)
+            {
+                // your code
             }
         }
 
