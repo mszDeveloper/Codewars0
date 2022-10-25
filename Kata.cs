@@ -209,6 +209,7 @@ namespace Codewars0
         {
             public static string RevRot(string strng, int sz)
             {
+                if (strng.Length.Equals(0) || sz <= 0 || strng.Length < sz) return "";
                 StringBuilder newStrng = new();
                 StringBuilder chunk = new();
                 int numberCurrentSybol = 0;
@@ -216,7 +217,7 @@ namespace Codewars0
                 {
                     numberCurrentSybol++;
                     chunk.Append(item);
-                    if (chunk.Length.Equals(sz) || numberCurrentSybol.Equals(strng.Length))
+                    if (chunk.Length.Equals(sz))
                     {
                         int sumCubes = CalcSumCubes(chunk);
                         if ((sumCubes % 2).Equals(0))
