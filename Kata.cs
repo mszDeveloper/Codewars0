@@ -102,7 +102,7 @@ namespace Codewars0
                 for (int index = 0; ;)
                 {
                     if (index >= parenthesis.Length) break;
-                    if (index.Equals(parenthesis.Length - 1) && parenthesis[index].Equals('(')) return false; 
+                    if (index.Equals(parenthesis.Length - 1) && parenthesis[index].Equals('(')) return false;
                     if (parenthesis[index].Equals('(') && parenthesis[index + 1].Equals(')'))
                     {
                         parenthesis = parenthesis.Remove(index, 2);
@@ -265,7 +265,45 @@ namespace Codewars0
         {
             public static string orderWeight(string strng)
             {
-                // your code
+                if (strng.Length.Equals(0)) return String.Empty;
+                List<string> weights = new();
+                StringBuilder weight = new();
+                foreach (var item in strng)
+                {
+                    if (!item.Equals(' '))
+                    {
+                        weight.Append(item);
+                    }
+                    else if (!weight.Length.Equals(0))
+                    {
+                        weights.Add(weight.ToString());
+                        weight.Clear();
+                    }
+                }
+                weights.Sort
+                ((weight1, weight2) =>
+                    {
+                        return CalcSumDigits(weight1).CompareTo(CalcSumDigits(weight2));
+                    }
+                );
+                StringBuilder newStrng = new();
+                foreach (var item in weights)
+                {
+                    newStrng.Append(item);
+                    newStrng.Append(' ');
+                }
+                newStrng.Remove(newStrng.Length - 1, 1);
+                return newStrng.ToString();
+            }
+
+            public static int CalcSumDigits(string number)
+            {
+                int sum = 0;
+                foreach (var item in number)
+                {
+                    sum += Convert.ToInt32(item);
+                }
+                return sum;
             }
         }
 
