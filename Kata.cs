@@ -280,6 +280,12 @@ namespace Codewars0
                         weight.Clear();
                     }
                 }
+                if (!strng.Last().Equals(' '))
+                {
+                    weights.Add(weight.ToString());
+                    weight.Clear();
+                }
+
                 weights.Sort
                 ((weight1, weight2) =>
                     {

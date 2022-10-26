@@ -7,7 +7,7 @@ namespace Codewars0
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            string result = Kata.Revrot.RevRot("1234", 0);
+            string result = Kata.WeightSort.orderWeight("2000 103 123 4444 99");
             Console.WriteLine(result);
 
         }
