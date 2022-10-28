@@ -315,7 +315,25 @@ namespace Codewars0
                 }
                 return sum;
             }
+
+            /*
+             *   public static string orderWeight(string strng)    
+    => string.Join(" ", strng.Split().OrderBy(s => s.Sum(char.GetNumericValue)).ThenBy(x => x));
+            //
+                var strArr = strng.Split(' ');
+                var strArr1 = strArr.OrderBy(s => s.Sum(char.GetNumericValue));
+                var strArr2 = strArr1.ThenBy(w => w);
+                var result = string.Join(" ", strArr2);
+                return result;
+             */
         }
+
+
+
+
+
+
+
 
     }
 }
