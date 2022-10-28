@@ -266,34 +266,39 @@ namespace Codewars0
             public static string orderWeight(string strng)
             {
                 if (strng.Length.Equals(0)) return String.Empty;
-                List<string> weights = new();
-                StringBuilder weight = new();
+                List<string> numbers = new();
+                StringBuilder number = new();
                 foreach (var item in strng)
                 {
                     if (!item.Equals(' '))
                     {
-                        weight.Append(item);
+                        number.Append(item);
                     }
-                    else if (!weight.Length.Equals(0))
+                    else if (!number.Length.Equals(0))
                     {
-                        weights.Add(weight.ToString());
-                        weight.Clear();
+                        numbers.Add(number.ToString());
+                        number.Clear();
                     }
                 }
                 if (!strng.Last().Equals(' '))
                 {
-                    weights.Add(weight.ToString());
-                    weight.Clear();
+                    numbers.Add(number.ToString());
+                    number.Clear();
                 }
-
-                weights.Sort
-                ((weight1, weight2) =>
+                numbers.Sort
+                ((number1, number2) =>
                     {
-                        return CalcSumDigits(weight1).CompareTo(CalcSumDigits(weight2));
+                        var weight1 = CalcWeight(number1);
+                        var weight2 = CalcWeight(number2);
+                        if (weight1.Equals(weight2))
+                        {
+                            return number1.CompareTo(number2);
+                        }
+                        return weight1.CompareTo(weight2);
                     }
                 );
                 StringBuilder newStrng = new();
-                foreach (var item in weights)
+                foreach (var item in numbers)
                 {
                     newStrng.Append(item);
                     newStrng.Append(' ');
@@ -301,13 +306,12 @@ namespace Codewars0
                 newStrng.Remove(newStrng.Length - 1, 1);
                 return newStrng.ToString();
             }
-
-            public static int CalcSumDigits(string number)
+            public static int CalcWeight(string number)
             {
                 int sum = 0;
                 foreach (var item in number)
                 {
-                    sum += Convert.ToInt32(item);
+                    sum += Convert.ToInt32(item.ToString());
                 }
                 return sum;
             }
