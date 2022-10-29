@@ -40,11 +40,25 @@ namespace Codewars0
 
         public static int MaxSequence(int[] arr)
         {
-            //TODO : create code
-            return 0;
+            int maxSum = 0;
+            int currentSum = 0;
+            foreach (var item in arr)
+            {
+                currentSum += item;
+                currentSum = Math.Max(currentSum, 0);
+                maxSum = Math.Max(currentSum, maxSum);
+            }
+            return maxSum;
         }
 
-
+        public class DigPow
+        {
+            public static long digPow(int n, int p)
+            {
+                // your code
+                return -1;
+            }
+        }
 
 
 
