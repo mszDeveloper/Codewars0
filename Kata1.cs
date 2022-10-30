@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Codewars0
 {
@@ -74,11 +75,38 @@ namespace Codewars0
 
             public static long[] SumDigPow(long a, long b)
             {
-                // your code
+                List<long> numbers = new();
+                for (var number = a; number <= b; number++)
+                {
+                    string digits = number.ToString();
+                    if (digits.Length.Equals(1))
+                    {
+                        numbers.Add(number);
+                        continue;
+                    }
+                    double sum = 0;
+                    double power = 1;
+                    foreach (var item in digits)
+                    {
+                        sum += Math.Pow(Char.GetNumericValue(item), power);
+                        power++;
+                    }
+                    if (sum.Equals(number))
+                    {
+                        numbers.Add(number);
+                    }
+                }
+                return numbers.ToArray();
             }
         }
 
-
+        public class StripCommentsSolution
+        {
+            public static string StripComments(string text, string[] commentSymbols)
+            {
+                return "";
+            }
+        }
 
 
 
