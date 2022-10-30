@@ -55,11 +55,28 @@ namespace Codewars0
         {
             public static long digPow(int n, int p)
             {
-                // your code
-                return -1;
+                string digits = n.ToString();
+                double sum = 0;
+                int add = 0;
+                foreach (var item in digits)
+                {
+                    double digit = Char.GetNumericValue(item);
+                    sum += Math.Pow(digit, p + add);
+                    add++;
+                }
+                if (!(sum % n).Equals(0)) return -1;
+                return Convert.ToInt64(sum / n);
             }
         }
 
+        public class SumDigPower
+        {
+
+            public static long[] SumDigPow(long a, long b)
+            {
+                // your code
+            }
+        }
 
 
 
