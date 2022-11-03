@@ -104,11 +104,20 @@ namespace Codewars0
         {
             public static string StripComments(string text, string[] commentSymbols)
             {
-                return "";
+                string[] lines = text.Split(new[] { "\n" }, StringSplitOptions.None);
+                lines = lines.Select(x => x.Split(commentSymbols, StringSplitOptions.None).First().TrimEnd()).ToArray();
+                return string.Join("\n", lines);
             }
         }
 
-
+        public class Matrix
+        {
+            public static int Determinant(int[][] matrix)
+            {
+                // Your code here!
+                return 0;
+            }
+        }
 
 
 
