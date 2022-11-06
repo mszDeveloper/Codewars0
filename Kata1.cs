@@ -112,7 +112,7 @@ namespace Codewars0
 
         public class Matrix
         {
-            public static double[] Gauss(double[,] Matrix)
+            public static double[,] Gauss(double[,] Matrix)
             {
                 int n = Matrix.GetLength(0); //Размерность начальной матрицы (строки)
                 double[,] Matrix_Clone = new double[n, n + 1]; //Матрица-дублер
@@ -135,33 +135,91 @@ namespace Codewars0
                         for (int j = 0; j < n + 1; j++)
                             Matrix[i, j] = Matrix_Clone[i, j];
                 }
+                return Matrix;
+            }
 
-                // Обратный ход (Зануление верхнего правого угла)
-                for (int k = n - 1; k > -1; k--) //k-номер строки
+            static void MatrixDecompose(ref int[][] matrix, out int toggle)
+            {
+                // Разложение LUP Дулитла. Предполагается,
+                // что матрица квадратная.
+                int n = matrix.Length; // для удобства
+                toggle = 1;
+                for (int j = 0; j < n - 1; ++j) // каждый столбец
                 {
-                    for (int i = n; i > -1; i--) //i-номер столбца
-                        Matrix_Clone[k, i] = Matrix_Clone[k, i] / Matrix[k, k];
-                    for (int i = k - 1; i > -1; i--) //i-номер следующей строки после k
+                    double colMax = Math.Abs(matrix[j][j]); // Наибольшее значение в столбце j
+                    int pRow = j;
+                    for (int i = j + 1; i < n; ++i)
                     {
-                        double K = Matrix_Clone[i, k] / Matrix_Clone[k, k];
-                        for (int j = n; j > -1; j--) //j-номер столбца следующей строки после k
-                            Matrix_Clone[i, j] = Matrix_Clone[i, j] - Matrix_Clone[k, j] * K;
+                        if (matrix[i][j] > colMax)
+                        {
+                            colMax = matrix[i][j];
+                            pRow = i;
+                        }
+                    }
+                    if (pRow != j) // перестановка строк
+                    {
+                        int[] rowPtr = matrix[pRow];
+                        matrix[pRow] = matrix[j];
+                        matrix[j] = rowPtr;
+                        toggle = -toggle; // переключатель перестановки строк
+                    }
+                    for (int i = j + 1; i < n; ++i)
+                    {
+                        matrix[i][j] /= matrix[j][j];
+                        for (int k = j + 1; k < n; ++k)
+                            matrix[i][k] -= matrix[i][j] * matrix[j][k];
+                    }
+                } // основной цикл по столбцу j
+            }
+
+            public static int Determinant1(int[][] matrix)
+            {
+                if (matrix.Length.Equals(1))
+                {
+                    return matrix[0][0];
+                }
+                if (matrix.Length.Equals(2))
+                {
+                    return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+                }
+                int toggle;
+                MatrixDecompose(ref matrix, out toggle);
+                int result = toggle;
+                for (int i = 0; i < matrix.Length; i++)
+                {
+                    result *= matrix[i][i];
+                }
+                return result;
+            }
+            public static int[][] ToTriangle(int[][] matrix)
+            {
+                int n = matrix.GetLength(0);
+                for (int i = 0; i < n - 1; i++)
+                {
+                    for (int j = i + 1; j < n; j++)
+                    {
+                        double coeff = matrix[j][i] / matrix[i][i];
+                        for (int k = i; k < n; k++)
+                            matrix[j][k] -= Convert.ToInt32(matrix[i][k] * coeff);
                     }
                 }
-
-                // Отделяем от общей матрицы ответы
-                double[] Answer = new double[n];
-                for (int i = 0; i < n; i++)
-                    Answer[i] = Matrix_Clone[i, n];
-
-                return Answer;
+                return matrix;
             }
 
             public static int Determinant(int[][] matrix)
             {
-                // Your code here!
+                if (matrix.Length.Equals(1))
+                {
+                    return matrix[0][0];
+                }
+                if (matrix.Length.Equals(2))
+                {
+                    return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+                }
+
                 return 0;
             }
+
         }
 
 
