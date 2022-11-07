@@ -8,5 +8,51 @@ namespace Codewars0
 {
     class Kata2
     {
+        public static int TrailingZeros(int n)
+        {
+            //Solution
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
