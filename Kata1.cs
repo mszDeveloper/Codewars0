@@ -205,7 +205,11 @@ namespace Codewars0
                 }
                 return matrix;
             }
-
+            /// <summary>
+            /// ///////////////////
+            /// </summary>
+            /// <param name="matrix"></param>
+            /// <returns></returns>
             public static int Determinant(int[][] matrix)
             {
                 int matrixLength = matrix.Length;
@@ -223,16 +227,29 @@ namespace Codewars0
                 {
                     if (!matrix[0][col].Equals(0))
                     {
-                        int minorDet = Determinant(CreateMinorMatrix(matrix, col));
-                        Console.WriteLine(minorDet);
-                        //det += matrix[0][col] * Determinant(CreateMinorMatrix(matrix, col)) * toggle;
+                        int[][] tmpMatrix = MatrixDuplicate(matrix);
+                        det += matrix[0][col] * Determinant(CreateMinorMatrix(tmpMatrix, col)) * toggle;
                     }
                     toggle = -toggle;
                 }
                 return det;
             }
-
-            public static int[][] CreateMinorMatrix(int[][] matrix, int minorColumn)
+            static int[][] MatrixCreate(int rows, int cols)
+            {
+                int[][] result = new int[rows][];
+                for (int i = 0; i < rows; ++i)
+                    result[i] = new int[cols];
+                return result;
+            }
+            static int[][] MatrixDuplicate(int[][] matrix)
+            {
+                int[][] result = MatrixCreate(matrix.Length, matrix[0].Length);
+                for (int i = 0; i < matrix.Length; ++i)
+                    for (int j = 0; j < matrix[i].Length; ++j)
+                        result[i][j] = matrix[i][j];
+                return result;
+            }
+            static int[][] CreateMinorMatrix(int[][] matrix, int minorColumn)
             {
                 int matrixLength = matrix.Length;
                 int[][] result = new int[matrixLength - 1][]; 
@@ -252,6 +269,38 @@ namespace Codewars0
                 }
                 return result;
             }
+
+            /* 
+               public static int Determinant(int[][] matrix)
+                  {
+                    int det = 0;
+                    if (matrix.Length != matrix[0].Length)
+                      return -1;
+                    if (matrix.Length == 1)
+                      return matrix[0][0];
+
+                    for (int i = 0; i < matrix.Length; i++)
+                      det += (int)Math.Pow(-1, i) * matrix[0][i] * Determinant(Minor(matrix, i));
+
+                    return det;
+                  }
+
+                  public static int[][] Minor(int[][] matrix, int pos)
+                  {
+                    int[][] minor = new int[matrix.Length - 1][];
+                    for (int i = 0; i < minor.Length; i++)
+                      minor[i] = new int[minor.Length];
+
+                    for (int i = 1; i < matrix.Length; i++)
+                    {
+                      for (int j = 0; j < pos; j++)
+                        minor[i - 1][j] = matrix[i][j];
+                      for (int j = pos + 1; j < matrix.Length; j++)
+                        minor[i - 1][j - 1] = matrix[i][j];
+                    }
+                        return minor;
+                  }
+             */
 
         }
 
