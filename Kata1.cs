@@ -208,16 +208,47 @@ namespace Codewars0
 
             public static int Determinant(int[][] matrix)
             {
-                if (matrix.Length.Equals(1))
+                int matrixLength = matrix.Length;
+                if (matrixLength.Equals(1))
                 {
                     return matrix[0][0];
                 }
-                if (matrix.Length.Equals(2))
+                if (matrixLength.Equals(2))
                 {
                     return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
                 }
+                int det = 0;
+                int toggle = 1;
+                for (int col = 0; col < matrixLength; col++)
+                {
+                    if (!matrix[0][col].Equals(0))
+                    {
+                        det += matrix[0][col] * Determinant(CreateMinorMatrix(matrix, col)) * toggle;
+                    }
+                    toggle = -toggle;
+                }
+                return det;
+            }
 
-                return 0;
+            public static int[][] CreateMinorMatrix(int[][] matrix, int minorColumn)
+            {
+                int matrixLength = matrix.Length;
+                int[][] result = new int[matrixLength - 1][]; 
+                for (int row = 0; row < matrixLength - 1; row++)
+                {
+                    matrix[row] = matrix[row + 1];
+                    result[row] = new int[matrixLength - 1];
+                    for (int col = minorColumn; col < matrixLength - 1; col++)
+                    {
+                        matrix[row][col] = matrix[row][col + 1];
+                        result[row][col] = matrix[row][col];
+                    }
+                    for (int col = 0; col < minorColumn; col++)
+                    {
+                        result[row][col] = matrix[row][col];
+                    }
+                }
+                return result;
             }
 
         }
