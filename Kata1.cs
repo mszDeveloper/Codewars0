@@ -223,7 +223,9 @@ namespace Codewars0
                 {
                     if (!matrix[0][col].Equals(0))
                     {
-                        det += matrix[0][col] * Determinant(CreateMinorMatrix(matrix, col)) * toggle;
+                        int minorDet = Determinant(CreateMinorMatrix(matrix, col));
+                        Console.WriteLine(minorDet);
+                        //det += matrix[0][col] * Determinant(CreateMinorMatrix(matrix, col)) * toggle;
                     }
                     toggle = -toggle;
                 }

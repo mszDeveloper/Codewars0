@@ -7,9 +7,14 @@ namespace Codewars0
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            string result = Kata.WeightSort.orderWeight("2000 103 123 4444 99");
+            ///////////////////////////////////////////
+            
+            int[][] matrix = new int[][] { new[] { 2, 5, 3 }, new[] { 1, -2, -1 }, new[] { 1, 3, 4 } };
+            int result = Kata1.Matrix.Determinant(matrix);
             Console.WriteLine(result);
 
+            ///////////////////////////////////////////
+            Console.WriteLine("Ready!");
         }
     }
 
