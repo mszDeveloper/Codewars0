@@ -140,6 +140,7 @@ namespace Codewars0
 
             static void MatrixDecompose(ref int[][] matrix, out int toggle)
             {
+                //https://learn.microsoft.com/ru-ru/archive/msdn-magazine/2012/december/csharp-matrix-decomposition
                 // Разложение LUP Дулитла. Предполагается,
                 // что матрица квадратная.
                 int n = matrix.Length; // для удобства
