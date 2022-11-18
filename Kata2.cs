@@ -39,21 +39,35 @@ namespace Codewars0
 
         public static string sumStrings(string a, string b)
         {
+            if (a.Length.Equals(0) || b.Length.Equals(0))
+            {
+                return "0";
+            }
+            
+            StringBuilder aMut = new(a);
+            StringBuilder bMut = new(b);
+            RemoveLeadingZeros(ref aMut);
+            RemoveLeadingZeros(ref bMut);
+            if (aMut.Length.Equals(0) || bMut.Length.Equals(0))
+            {
+                return "0";
+            }
+
             int minLength, maxLength;
             StringBuilder minString, maxString;
-            if (a.Length >= b.Length)
+            if (aMut.Length >= bMut.Length)
             {
-                minLength = b.Length;
-                maxLength = a.Length;
-                minString = new StringBuilder(b);
-                maxString = new StringBuilder(a);
+                minLength = bMut.Length;
+                maxLength = aMut.Length;
+                minString = bMut;
+                maxString = aMut;
             }
             else
             {
-                minLength = a.Length;
-                maxLength = b.Length;
-                minString = new StringBuilder(a);
-                maxString = new StringBuilder(b);
+                minLength = aMut.Length;
+                maxLength = bMut.Length;
+                minString = aMut;
+                maxString = bMut;
             }
 
             int zerosCount = maxLength - minLength;
@@ -64,14 +78,14 @@ namespace Codewars0
                 {
                     zeros.Append('0');
                 }
-                minString = zeros.Append(minString);
+                zeros.Append(minString);
             }
 
             int add = 0;
             StringBuilder result = new();
             for (int index = maxLength - 1; index >= 0; index--)
             {
-                int digitsSum = Convert.ToInt32(maxString[index]) + Convert.ToInt32(minString[index]) + add;
+                int digitsSum = Int32.Parse(maxString[index].ToString()) + Int32.Parse(minString[index].ToString()) + add;
                 if (digitsSum > 9)
                 {
                     add = 1;
@@ -83,11 +97,35 @@ namespace Codewars0
                 }
                 result.Append(digitsSum);
             }
-
-            return result.ToString().ToCharArray().Reverse().ToString();
+            if (add > 0)
+            {
+                result.Append(add);
+            }
+            char[] chars = result.ToString().ToCharArray();
+            Array.Reverse(chars);
+            return new string(chars);
         }
 
-
+        static void RemoveLeadingZeros(ref StringBuilder str)
+        {
+            int length = str.Length;
+            for (int index = 0; ; index++)
+            {
+                if (index >= length) break;
+                if (str[index].Equals('0'))
+                {
+                    str.Remove(index, 1);
+                    index--;
+                    length--;
+                }
+                else break;
+            }
+        }
+        /*
+        123
+        456
+        579
+        */
 
 
 
