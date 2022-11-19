@@ -39,38 +39,42 @@ namespace Codewars0
 
         public static string sumStrings(string a, string b)
         {
-            if (a.Length.Equals(0) || b.Length.Equals(0))
+            if (a.Length.Equals(0) && b.Length.Equals(0))
             {
                 return "0";
             }
-            
+            if (!a.Length.Equals(0) && b.Length.Equals(0))
+            {
+                return a;
+            }
+            if (a.Length.Equals(0) && !b.Length.Equals(0))
+            {
+                return b;
+            }
+
             StringBuilder aMut = new(a);
             StringBuilder bMut = new(b);
             RemoveLeadingZeros(ref aMut);
             RemoveLeadingZeros(ref bMut);
-            if (aMut.Length.Equals(0) || bMut.Length.Equals(0))
-            {
-                return "0";
-            }
 
-            int minLength, maxLength;
-            StringBuilder minString, maxString;
+            int smallerLength, biggerLength;
+            StringBuilder smallerString, biggerString;
             if (aMut.Length >= bMut.Length)
             {
-                minLength = bMut.Length;
-                maxLength = aMut.Length;
-                minString = bMut;
-                maxString = aMut;
+                smallerLength = bMut.Length;
+                biggerLength = aMut.Length;
+                smallerString = bMut;
+                biggerString = aMut;
             }
             else
             {
-                minLength = aMut.Length;
-                maxLength = bMut.Length;
-                minString = aMut;
-                maxString = bMut;
+                smallerLength = aMut.Length;
+                biggerLength = bMut.Length;
+                smallerString = aMut;
+                biggerString = bMut;
             }
 
-            int zerosCount = maxLength - minLength;
+            int zerosCount = biggerLength - smallerLength;
             if (zerosCount > 0)
             {
                 StringBuilder zeros = new();
@@ -78,14 +82,15 @@ namespace Codewars0
                 {
                     zeros.Append('0');
                 }
-                zeros.Append(minString);
+                zeros.Append(smallerString);
+                smallerString = zeros;
             }
 
             int add = 0;
             StringBuilder result = new();
-            for (int index = maxLength - 1; index >= 0; index--)
+            for (int index = biggerLength - 1; index >= 0; index--)
             {
-                int digitsSum = Int32.Parse(maxString[index].ToString()) + Int32.Parse(minString[index].ToString()) + add;
+                int digitsSum = Int32.Parse(biggerString[index].ToString()) + Int32.Parse(smallerString[index].ToString()) + add;
                 if (digitsSum > 9)
                 {
                     add = 1;
@@ -109,25 +114,42 @@ namespace Codewars0
         static void RemoveLeadingZeros(ref StringBuilder str)
         {
             int length = str.Length;
-            for (int index = 0; ; index++)
+            while (length > 1)
             {
-                if (index >= length) break;
-                if (str[index].Equals('0'))
+                if (str[0].Equals('0'))
                 {
-                    str.Remove(index, 1);
-                    index--;
+                    str.Remove(0, 1);
                     length--;
                 }
                 else break;
             }
         }
         /*
-        123
-        456
-        579
+            using System;
+            using System.Numerics;
+
+            public static class Kata
+            {
+                public static string sumStrings(string a, string b)
+                {
+                  BigInteger aInt;
+                  BigInteger bInt;
+      
+                  BigInteger.TryParse(a, out aInt);
+                  BigInteger.TryParse(b, out bInt);
+      
+                  return (aInt + bInt).ToString();
+                }
+            }
         */
 
-
+        public class SnailSolution
+        {
+            public static int[] Snail(int[][] array)
+            {
+                // enjoy
+            }
+        }
 
 
 
