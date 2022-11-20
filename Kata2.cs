@@ -37,117 +37,159 @@ namespace Codewars0
              */
         }
 
-        public static string sumStrings(string a, string b)
+        public class SumStrings
         {
-            if (a.Length.Equals(0) && b.Length.Equals(0))
+            public static string sumStrings(string a, string b)
             {
-                return "0";
-            }
-            if (!a.Length.Equals(0) && b.Length.Equals(0))
-            {
-                return a;
-            }
-            if (a.Length.Equals(0) && !b.Length.Equals(0))
-            {
-                return b;
-            }
-
-            StringBuilder aMut = new(a);
-            StringBuilder bMut = new(b);
-            RemoveLeadingZeros(ref aMut);
-            RemoveLeadingZeros(ref bMut);
-
-            int smallerLength, biggerLength;
-            StringBuilder smallerString, biggerString;
-            if (aMut.Length >= bMut.Length)
-            {
-                smallerLength = bMut.Length;
-                biggerLength = aMut.Length;
-                smallerString = bMut;
-                biggerString = aMut;
-            }
-            else
-            {
-                smallerLength = aMut.Length;
-                biggerLength = bMut.Length;
-                smallerString = aMut;
-                biggerString = bMut;
-            }
-
-            int zerosCount = biggerLength - smallerLength;
-            if (zerosCount > 0)
-            {
-                StringBuilder zeros = new();
-                for (int i = 0; i < zerosCount; i++)
+                if (a.Length.Equals(0) && b.Length.Equals(0))
                 {
-                    zeros.Append('0');
+                    return "0";
                 }
-                zeros.Append(smallerString);
-                smallerString = zeros;
-            }
-
-            int add = 0;
-            StringBuilder result = new();
-            for (int index = biggerLength - 1; index >= 0; index--)
-            {
-                int digitsSum = Int32.Parse(biggerString[index].ToString()) + Int32.Parse(smallerString[index].ToString()) + add;
-                if (digitsSum > 9)
+                if (!a.Length.Equals(0) && b.Length.Equals(0))
                 {
-                    add = 1;
-                    digitsSum %= 10;
+                    return a;
+                }
+                if (a.Length.Equals(0) && !b.Length.Equals(0))
+                {
+                    return b;
+                }
+
+                StringBuilder aMut = new(a);
+                StringBuilder bMut = new(b);
+                RemoveLeadingZeros(ref aMut);
+                RemoveLeadingZeros(ref bMut);
+
+                int smallerLength, biggerLength;
+                StringBuilder smallerString, biggerString;
+                if (aMut.Length >= bMut.Length)
+                {
+                    smallerLength = bMut.Length;
+                    biggerLength = aMut.Length;
+                    smallerString = bMut;
+                    biggerString = aMut;
                 }
                 else
                 {
-                    add = 0;
+                    smallerLength = aMut.Length;
+                    biggerLength = bMut.Length;
+                    smallerString = aMut;
+                    biggerString = bMut;
                 }
-                result.Append(digitsSum);
-            }
-            if (add > 0)
-            {
-                result.Append(add);
-            }
-            char[] chars = result.ToString().ToCharArray();
-            Array.Reverse(chars);
-            return new string(chars);
-        }
 
-        static void RemoveLeadingZeros(ref StringBuilder str)
-        {
-            int length = str.Length;
-            while (length > 1)
-            {
-                if (str[0].Equals('0'))
+                int zerosCount = biggerLength - smallerLength;
+                if (zerosCount > 0)
                 {
-                    str.Remove(0, 1);
-                    length--;
+                    StringBuilder zeros = new();
+                    for (int i = 0; i < zerosCount; i++)
+                    {
+                        zeros.Append('0');
+                    }
+                    zeros.Append(smallerString);
+                    smallerString = zeros;
                 }
-                else break;
-            }
-        }
-        /*
-            using System;
-            using System.Numerics;
 
-            public static class Kata
-            {
-                public static string sumStrings(string a, string b)
+                int add = 0;
+                StringBuilder result = new();
+                for (int index = biggerLength - 1; index >= 0; index--)
                 {
-                  BigInteger aInt;
-                  BigInteger bInt;
-      
-                  BigInteger.TryParse(a, out aInt);
-                  BigInteger.TryParse(b, out bInt);
-      
-                  return (aInt + bInt).ToString();
+                    int digitsSum = Int32.Parse(biggerString[index].ToString()) + Int32.Parse(smallerString[index].ToString()) + add;
+                    if (digitsSum > 9)
+                    {
+                        add = 1;
+                        digitsSum %= 10;
+                    }
+                    else
+                    {
+                        add = 0;
+                    }
+                    result.Append(digitsSum);
+                }
+                if (add > 0)
+                {
+                    result.Append(add);
+                }
+                char[] chars = result.ToString().ToCharArray();
+                Array.Reverse(chars);
+                return new string(chars);
+            }
+
+            static void RemoveLeadingZeros(ref StringBuilder str)
+            {
+                int length = str.Length;
+                while (length > 1)
+                {
+                    if (str[0].Equals('0'))
+                    {
+                        str.Remove(0, 1);
+                        length--;
+                    }
+                    else break;
                 }
             }
-        */
+            /*
+                using System;
+                using System.Numerics;
+
+                public static class Kata
+                {
+                    public static string sumStrings(string a, string b)
+                    {
+                      BigInteger aInt;
+                      BigInteger bInt;
+      
+                      BigInteger.TryParse(a, out aInt);
+                      BigInteger.TryParse(b, out bInt);
+      
+                      return (aInt + bInt).ToString();
+                    }
+                }
+            */
+        }
 
         public class SnailSolution
         {
             public static int[] Snail(int[][] array)
             {
-                // enjoy
+                List<int> resultList = new();
+                int length = array.Length;
+                //for (int row = 0; row < length; row++)
+                //{
+                //    for (int column = 0; column < length; column++)
+                //    {
+                //        resultList.Add(array[row][column]);
+                //    }
+                //}
+                bool horizontal = true;
+                int i = 0;
+                int k = 0;
+                for (; ;)
+                {
+                    if (horizontal)
+                    {
+                        resultList.Add(array[k][i]);
+                        if (i.Equals(length - 1))
+                        {
+                            horizontal = false;
+                            k++;
+                            continue;
+                        }
+                        i++;
+                    }
+                    else
+                    {
+                        resultList.Add(array[k][i]);
+                        if (i.Equals(length - 1))
+                        {
+                            horizontal = true;
+                            i--;
+                            continue;
+                        }
+                        k++;
+                    }
+                }
+
+
+                return resultList.ToArray();
             }
         }
 
