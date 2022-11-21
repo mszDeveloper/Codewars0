@@ -160,30 +160,37 @@ namespace Codewars0
                 //    }
                 //}
                 bool horizontal = true;
+                bool forward = true;
                 int i = 0;
                 int k = 0;
                 for (; ;)
                 {
+                    if (forward)
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
                     if (horizontal)
                     {
-                        resultList.Add(array[k][i]);
                         if (i.Equals(length - 1))
                         {
                             horizontal = false;
-                            k++;
                             continue;
                         }
+                        resultList.Add(array[k][i]);
                         i++;
                     }
                     else
                     {
-                        resultList.Add(array[k][i]);
                         if (i.Equals(length - 1))
                         {
                             horizontal = true;
-                            i--;
                             continue;
                         }
+                        resultList.Add(array[k][i]);
                         k++;
                     }
                 }
