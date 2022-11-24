@@ -152,47 +152,60 @@ namespace Codewars0
             {
                 List<int> resultList = new();
                 int length = array.Length;
-                //for (int row = 0; row < length; row++)
-                //{
-                //    for (int column = 0; column < length; column++)
-                //    {
-                //        resultList.Add(array[row][column]);
-                //    }
-                //}
-                bool horizontal = true;
-                bool forward = true;
-                int i = 0;
-                int k = 0;
-                for (; ;)
+                bool horizontal = true, forward = true;
+                int col = 0, row = 0, limiter = 0;
+                while (true)
                 {
                     if (forward)
                     {
-
+                        if (horizontal)
+                        {
+                            if (col.Equals(length - 1 - limiter))
+                            {
+                                horizontal = false;
+                                continue;
+                            }
+                            resultList.Add(array[row][col]);
+                            col++;
+                        }
+                        else
+                        {
+                            if (row.Equals(length - 1 - limiter))
+                            {
+                                horizontal = true;
+                                forward = false;
+                                continue;
+                            }
+                            resultList.Add(array[row][col]);
+                            row++;
+                        }
                     }
                     else
                     {
+                        if (horizontal)
+                        {
+                            if (col.Equals(0 + limiter))
+                            {
+                                horizontal = false;
+                                limiter++;
+                                continue;
+                            }
+                            resultList.Add(array[row][col]);
+                            col--;
+                        }
+                        else
+                        {
+                            if (row.Equals(0 + limiter))
+                            {
+                                horizontal = true;
+                                forward = true;
+                                continue;
+                            }
+                            resultList.Add(array[row][col]);
+                            row--;
+                        }
+                    }
 
-                    }
-                    if (horizontal)
-                    {
-                        if (i.Equals(length - 1))
-                        {
-                            horizontal = false;
-                            continue;
-                        }
-                        resultList.Add(array[k][i]);
-                        i++;
-                    }
-                    else
-                    {
-                        if (i.Equals(length - 1))
-                        {
-                            horizontal = true;
-                            continue;
-                        }
-                        resultList.Add(array[k][i]);
-                        k++;
-                    }
                 }
 
 
