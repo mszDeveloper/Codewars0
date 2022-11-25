@@ -156,6 +156,10 @@ namespace Codewars0
                 int col = 0, row = 0, limiter = 0;
                 while (true)
                 {
+                    if (limiter >= (int)Math.Ceiling((double)length / 2))
+                    {
+                        break;
+                    }
                     if (forward)
                     {
                         if (horizontal)
@@ -207,8 +211,6 @@ namespace Codewars0
                     }
 
                 }
-
-
                 return resultList.ToArray();
             }
         }
