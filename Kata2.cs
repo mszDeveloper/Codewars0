@@ -152,14 +152,18 @@ namespace Codewars0
             {
                 List<int> resultList = new();
                 int length = array.Length;
+                if (length.Equals(0))
+                {
+                    return Array.Empty<int>();
+                }
+                if (array[0].Length.Equals(0))
+                {
+                    return Array.Empty<int>();
+                }
                 bool horizontal = true, forward = true;
                 int col = 0, row = 0, limiter = 0;
                 while (true)
                 {
-                    if (limiter >= (int)Math.Ceiling((double)length / 2))
-                    {
-                        break;
-                    }
                     if (forward)
                     {
                         if (horizontal)
@@ -167,6 +171,11 @@ namespace Codewars0
                             if (col.Equals(length - 1 - limiter))
                             {
                                 horizontal = false;
+                                if (limiter >= (int)Math.Ceiling((double)length / 2))
+                                {
+                                    resultList.Add(array[row][col]);
+                                    break;
+                                }
                                 continue;
                             }
                             resultList.Add(array[row][col]);
@@ -192,6 +201,11 @@ namespace Codewars0
                             {
                                 horizontal = false;
                                 limiter++;
+                                if (limiter >= (int)Math.Ceiling((double)length / 2))
+                                {
+                                    resultList.Add(array[row][col]);
+                                    break;
+                                }
                                 continue;
                             }
                             resultList.Add(array[row][col]);

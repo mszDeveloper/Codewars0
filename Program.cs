@@ -9,11 +9,14 @@ namespace Codewars0
             Console.WriteLine("Hello World!");
             ///////////////////////////////////////////
             
-            //int[][] matrix = new int[][] { new[] { 2, 5, 3 }, new[] { 1, -2, -1 }, new[] { 1, 3, 4 } };
+            int[][] matrix = new int[][] { new[] { 1, 2, 3 }, new[] { 4, 5, 6 }, new[] { 7, 8, 9 } };
 
-            string result = Kata2.sumStrings("2", "3");
+            int[] result = Kata2.SnailSolution.Snail(matrix);
             Console.WriteLine("result == ");
-            Console.WriteLine(result);
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
 
             ///////////////////////////////////////////
             Console.WriteLine("Ready!");
