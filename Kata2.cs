@@ -256,7 +256,14 @@ namespace Codewars0
              */
         }
 
-
+        public class SumOfSquares
+        {
+            public static int NSquaresFor(int n)
+            {
+                // Your code here!
+                return 0;
+            }
+        }
 
 
 
