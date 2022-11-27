@@ -258,10 +258,33 @@ namespace Codewars0
 
         public class SumOfSquares
         {
+            static bool IsInteger(double number)
+            {
+                return number == (int)number;
+            }
             public static int NSquaresFor(int n)
             {
-                // Your code here!
-                return 0;
+                int result = 0;
+                int a = n;
+                int b = a;
+                while (true)
+                {
+                    if (IsInteger(Math.Sqrt(b)))
+                    {
+                        result++;
+                        a -= b;
+                        if (a.Equals(0))
+                        {
+                            return result;
+                        }
+                        b = a;
+                    }
+                    else
+                    {
+                        b--;
+                        continue;
+                    }
+                }
             }
         }
 
