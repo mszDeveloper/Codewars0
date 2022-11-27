@@ -266,11 +266,12 @@ namespace Codewars0
             {
                 int result = 0;
                 int a = n;
-                int b = a;
+                int b = n;
                 while (true)
                 {
                     if (IsInteger(Math.Sqrt(b)))
                     {
+                        Console.WriteLine(b);
                         result++;
                         a -= b;
                         if (a.Equals(0))
