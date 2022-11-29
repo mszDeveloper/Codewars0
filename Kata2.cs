@@ -287,6 +287,24 @@ namespace Codewars0
                     }
                 }
             }
+
+            public static int NSquaresForRec(int n)
+            {
+                int result = 0;
+                int first = 0;
+                for (int i = n; i >= 4; i--)
+                {
+                    if (IsInteger(Math.Sqrt(i)))
+                    {
+                        first = i;
+                        result++;
+                        break;
+                    }
+                }
+                result += NSquaresForRec(n - first);
+                return result;
+            }
+
         }
 
 
