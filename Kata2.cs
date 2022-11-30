@@ -264,28 +264,85 @@ namespace Codewars0
             }
             public static int NSquaresFor(int n)
             {
-                int result = 0;
-                int a = n;
-                int b = n;
+                if (IsInteger(Math.Sqrt(n)))
+                {
+                    return 1;
+                }
+                int result1 = 0, result2 = 0, result3 = 0;
+                int a1 = n, a2 = n, a3 = n;
+                int b1 = n - 1, b2 = n - 1, b3 = n - 1;
+                int i1 = 0, i2 = 0;
                 while (true)
                 {
-                    if (IsInteger(Math.Sqrt(b)))
+                    if (IsInteger(Math.Sqrt(b1)))
                     {
-                        Console.WriteLine(b);
-                        result++;
-                        a -= b;
-                        if (a.Equals(0))
+                        //Console.WriteLine(b);
+                        result1++;
+                        a1 -= b1;
+                        if (a1.Equals(0))
                         {
-                            return result;
+                            break;
                         }
-                        b = a;
+                        b1 = a1;
                     }
                     else
                     {
-                        b--;
+                        b1--;
                         continue;
                     }
                 }
+                while (true)
+                {
+                    if (IsInteger(Math.Sqrt(b2)))
+                    {
+                        i1++;
+                        if (i1 <= 1)
+                        {
+                            b2--;
+                            continue;
+                        }
+                        result2++;
+                        a2 -= b2;
+                        if (a2.Equals(0))
+                        {
+                            break;
+                        }
+                        b2 = a2;
+                    }
+                    else
+                    {
+                        b2--;
+                        continue;
+                    }
+                }
+                while (true)
+                {
+                    if (IsInteger(Math.Sqrt(b3)))
+                    {
+                        i2++;
+                        if (i2 <= 2)
+                        {
+                            b3--;
+                            continue;
+                        }
+                        result3++;
+                        a3 -= b3;
+                        if (a3.Equals(0))
+                        {
+                            break;
+                        }
+                        b3 = a3;
+                    }
+                    else
+                    {
+                        b3--;
+                        continue;
+                    }
+                }
+                Console.WriteLine(result1);
+                Console.WriteLine(result2);
+                Console.WriteLine(result3);
+                return Math.Min(result1, result2);
             }
 
             public static int NSquaresForRec(int n)
@@ -304,6 +361,40 @@ namespace Codewars0
                 result += NSquaresForRec(n - first);
                 return result;
             }
+
+                //List<int> results = new();
+                //for (int i = 1; i < result1; i++)
+                //{
+                //    int result4 = 0;
+                //    int a4 = n;
+                //    int b4 = n - 1;
+                //    int i4 = 0;
+                //    while (true)
+                //    {
+                //        if (IsInteger(Math.Sqrt(b4)))
+                //        {
+                //            i4++;
+                //            if (i4 <= i)
+                //            {
+                //                b4--;
+                //                continue;
+                //            }
+                //            result4++;
+                //            a4 -= b4;
+                //            if (a4.Equals(0))
+                //            {
+                //                break;
+                //            }
+                //            b4 = a4;
+                //        }
+                //        else
+                //        {
+                //            b4--;
+                //            continue;
+                //        }
+                //    }
+                //    results.Add(result4);
+                //}
 
         }
 
