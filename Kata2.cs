@@ -351,7 +351,7 @@ namespace Codewars0
                 //return Math.Min(result1, result2);
 
                 List<int> results = new();
-                for (int i = 0; i <= n / 100; i++)
+                for (int i = 0; i <= n / 2; i++)
                 {
                     Console.WriteLine(i);
                     int result4 = 0;
