@@ -12,28 +12,6 @@ namespace Codewars0
         class NextPalindrom
         {
         //https://www.codewars.com/kata/56a6ce697c05fb4667000029/train/csharp
-            static int GetLeftSubNumber(int val)
-            {
-                string valStr = val.ToString();
-                int digitCount = valStr.Length;
-                string valStrLeft = valStr.Substring(0, digitCount / 2);
-                return int.Parse(valStrLeft);
-            }
-            static int GetReverseRightSubNumber(int val)
-            {
-                string valStr = val.ToString();
-                int digitCount = valStr.Length;
-                string valStrRight;
-                if ((digitCount % 2).Equals(0))
-                {
-                    valStrRight = valStr.Substring(digitCount / 2, digitCount / 2);
-                }
-                else
-                {
-                    valStrRight = valStr.Substring(digitCount / 2 + 1, digitCount / 2);
-                }
-                return int.Parse(Reverse(valStrRight));
-            }
             static string Reverse(string str)
             {
                 char[] charArray = str.ToCharArray();
@@ -45,7 +23,8 @@ namespace Codewars0
                 while (true)
                 {
                     val++;
-                    if (GetLeftSubNumber(val).Equals(GetReverseRightSubNumber(val)))
+                    string valStr = val.ToString();
+                    if (valStr.Equals(Reverse(valStr)))
                     {
                         return val;
                     }
