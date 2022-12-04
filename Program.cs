@@ -8,12 +8,13 @@ namespace Codewars0
         {
             Console.WriteLine("Hello World!");
             ///////////////////////////////////////////
-            
+
             //int[][] matrix = new int[][] { new[] { 1, 2, 3 }, new[] { 4, 5, 6 }, new[] { 7, 8, 9 } };
             //int[] result = Kata2.SnailSolution.Snail(matrix);
             //int result = Kata2.SumOfSquares.NSquaresFor(3456);
+            long result = Kata3.MaxIntChain(13);
             Console.WriteLine("result == ");
-            //Console.WriteLine(result);
+            Console.WriteLine(result);
 
             ///////////////////////////////////////////
             Console.WriteLine("Ready!");
