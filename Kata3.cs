@@ -88,8 +88,34 @@ namespace Codewars0
         }
 
         //https://www.codewars.com/kata/62c93765cef6f10030dfa92b
-
-
+        public static int Cats(int start, int finish)
+        {
+            int mews = 0;
+            while (true)
+            {
+                if (finish == start)
+                {
+                    return mews;
+                }
+                if ((finish - start) == 1)
+                {
+                    mews++;
+                    return mews;
+                }
+                if ((finish - start) == 2)
+                {
+                    mews += 2;
+                    return mews;
+                }
+                start += 3;
+                mews++;
+            }
+        }
+        //public static int Cats3(int start, int finish)
+        //{
+        //    var diff = finish - start;
+        //    return diff / 3 + diff % 3;
+        //}
 
     }
 }
