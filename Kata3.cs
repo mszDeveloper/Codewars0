@@ -73,8 +73,21 @@ namespace Codewars0
              */
         }
 
+        //https://www.codewars.com/kata/546e2562b03326a88e000020
+        public static int SquareDigits(int n)
+        {
+            string numberStr = n.ToString();
+            StringBuilder resultStr = new();
+            foreach (var item in numberStr)
+            {
+                int digit = int.Parse(item.ToString());
+                int digitPow = (int)Math.Pow(digit, 2);
+                resultStr.Append(digitPow.ToString());
+            }
+            return int.Parse(resultStr.ToString());
+        }
 
-
+        //https://www.codewars.com/kata/62c93765cef6f10030dfa92b
 
 
 
