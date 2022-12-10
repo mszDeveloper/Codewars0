@@ -105,9 +105,48 @@ namespace Codewars0
             }
         }
 
+        //https://www.codewars.com/kata/5544c7a5cb454edb3c000047
+        public class BouncingBall
+        {
+            public static int bouncingBall(double h, double bounce, double window)
+            {
+                if (h <= 0 || bounce <= 0 || bounce >= 1 || window >= h)
+                {
+                    return -1;
+                }
+                int count = -1;
+                while (h > window)
+                {
+                    count += 2;
+                    h *= bounce;
+                }
+                return count;
+            }
+        }
 
-
-
+        //https://www.codewars.com/kata/52b7ed099cdc285c300001cd
+        public class Intervals
+        {
+            public static int SumIntervals((int, int)[] intervals)
+            {
+                Array.Sort(intervals, (interval1, interval2) => interval2.Item1.CompareTo(interval1.Item1));
+                (int, int) previousInterval = (0, 0);
+                int sum = 0;
+                foreach (var interval in intervals)
+                {
+                    if (previousInterval.Item2 >= interval.Item2)
+                    {
+                        sum += interval.Item2 - previousInterval.Item1;
+                    }
+                    else
+                    {
+                        sum += interval.Item2 - interval.Item1;
+                    }
+                    
+                }
+                return -1;
+            }
+        }
 
 
 
