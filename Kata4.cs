@@ -129,23 +129,50 @@ namespace Codewars0
         {
             public static int SumIntervals((int, int)[] intervals)
             {
-                Array.Sort(intervals, (interval1, interval2) => interval2.Item1.CompareTo(interval1.Item1));
-                (int, int) previousInterval = (0, 0);
-                int sum = 0;
-                foreach (var interval in intervals)
+                if (intervals.Length == 0)
                 {
-                    if (previousInterval.Item2 >= interval.Item2)
+                    return 0;
+                }
+                Array.Sort(intervals, (interval1, interval2) => interval1.Item1.CompareTo(interval2.Item1));
+                (int, int) previousInterval = intervals[0];
+                int sum = intervals[0].Item2 - intervals[0].Item1;
+                int lastAdd = sum;
+                for (int i = 1; i < intervals.Length; i++)
+                {
+                    if (previousInterval.Item2 > intervals[i].Item2)
                     {
-                        sum += interval.Item2 - previousInterval.Item1;
+                        continue;
+                    }
+                    if (previousInterval.Item2 > intervals[i].Item1)
+                    {
+                        sum -= lastAdd;
+                        lastAdd = intervals[i].Item2 - previousInterval.Item1;
+                        previousInterval.Item2 = intervals[i].Item2;
                     }
                     else
                     {
-                        sum += interval.Item2 - interval.Item1;
+                        lastAdd = intervals[i].Item2 - intervals[i].Item1;
+                        previousInterval = intervals[i];
                     }
-                    
+                    sum += lastAdd;
                 }
-                return -1;
+                return sum;
             }
+            /*
+             *     public static int SumIntervals((int, int)[] intervals)
+                    {
+                        Array.Sort(intervals, (x,y) => x.Item1 - y.Item1);
+                        int max = int.MinValue;
+                        int total = 0;
+                        foreach (var interval in intervals) 
+                        {
+                            max = Math.Max(max, interval.Item1);
+                            total += Math.Max(0, interval.Item2 - max);
+                            max = Math.Max(max, interval.Item2);
+                        }
+                        return total;
+                    }
+             */
         }
 
 
