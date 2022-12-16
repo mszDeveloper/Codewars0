@@ -175,11 +175,64 @@ namespace Codewars0
              */
         }
 
+        //https://www.codewars.com/kata/5993fb6c4f5d9f770c0000f2
+        public static int SumNoDuplicates(int[] arr)
+        {
+            Array.Sort(arr);
+            int sum = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (i != 0 && arr[i] == arr[i - 1])
+                {
+                    continue;
+                }
+                if (i != (arr.Length - 1) && arr[i] == arr[i + 1])
+                {
+                    continue;
+                }
+                sum += arr[i];
+            }
+            return sum;
+        }
 
+        //https://www.codewars.com/kata/61123a6f2446320021db987d
+        public static int? PreviousMultipleOfThree(int n)
+        {
+            while (n != 0)
+            {
+                if (n % 3 == 0)
+                {
+                    return n;
+                }
+                n = n / 10;
+            }
+            return null;
+        }
 
-
-
-
+        //https://www.codewars.com/kata/544d114f84e41094a9000439
+        static bool IsInteger(double number)
+        {
+            return number == (int)number;
+        }
+        public static bool PowerOf4(object n)
+        {
+            if (n is Int16 || n is Int32)
+            {
+                int number = (int)n;
+                Console.WriteLine(number);
+                if (number <= 0 || number % 4 != 0)
+                {
+                    return false;
+                }
+                if (number == 1)
+                {
+                    return true;
+                }
+                double root = Math.Pow(number, 1 / 4);
+                return root == (int)root;
+            }
+            else return false;
+        }
 
 
 
