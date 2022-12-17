@@ -210,29 +210,82 @@ namespace Codewars0
         }
 
         //https://www.codewars.com/kata/544d114f84e41094a9000439
-        static bool IsInteger(double number)
-        {
-            return number == (int)number;
-        }
         public static bool PowerOf4(object n)
         {
             if (n is Int16 || n is Int32)
             {
                 int number = (int)n;
                 Console.WriteLine(number);
-                if (number <= 0 || number % 4 != 0)
-                {
-                    return false;
-                }
                 if (number == 1)
                 {
                     return true;
                 }
-                double root = Math.Pow(number, 1 / 4);
-                return root == (int)root;
+                if (number <= 0 || number % 4 != 0)
+                {
+                    return false;
+                }
+                double numberD = (double)number;
+                while (numberD > 1)
+                {
+                    numberD /= 4;
+                    if (numberD == 1)
+                    {
+                        return true;
+                    }
+                }
+                return false;
             }
             else return false;
         }
+
+        //https://www.codewars.com/kata/55f2b110f61eb01779000053
+        public int GetSum(int a, int b)
+        {
+            int begin = Math.Min(a, b);
+            int end = Math.Max(a, b);
+            int sum = 0;
+            while (begin <= end)
+            {
+                sum += begin;
+                begin++;
+            }
+            return sum;
+        }
+        //https://ru.wikipedia.org/wiki/Арифметическая_прогрессия
+        //public int GetSum(int a, int b)
+        //{
+        //    return (a + b) * (Math.Abs(a - b) + 1) / 2;
+        //}
+
+        //https://www.codewars.com/kata/57f609022f4d534f05000024
+
+        public static int Stray(int[] numbers)
+        {
+            for (int i = 1; i < numbers.Length - 1; i++)
+            {
+                if (numbers[i] != numbers[i - 1] && numbers[i] != numbers[i + 1])
+                {
+                    return numbers[i];
+                }
+            }
+            if (numbers[0] != numbers[1])
+            {
+                return numbers[0];
+            }
+            else
+            {
+                return numbers[numbers.Length - 1];
+            }
+        }
+
+
+
+
+
+
+
+
+
 
 
 
