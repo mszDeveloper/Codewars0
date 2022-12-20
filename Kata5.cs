@@ -86,11 +86,72 @@ namespace Codewars0
         //https://www.codewars.com/kata/58aa5d32c9eb04d90b000107
         public class KataMobius
         {
+            //Делится на квадрат любого простого числа.
+            static bool IsDivisibleBySquareAnyPrime(long n)
+            {
+                long div = 1;
+                long max = (long)Math.Sqrt(n);
+                while (div <= max)
+                {
+                    if (IsPrime(div))
+                    {
+                        long divSq = (long)Math.Pow(div, 2);
+                        if (n % divSq != 0)
+                        {
+                            return false;
+                        }
+                    }
+                    div++;
+                }
+                return true;
+            }
+            //Имеет четное количество простых множителей.
+            static bool HasEvenNumberPrimeFactors(long n)
+            {
+                long mult = 1;
+                long count = 0;
+                while (mult <= n)
+                {
+                    if (IsPrime(mult))
+                    {
+                        if (n % mult == 0)
+                        {
+                            count++;
+                            n /= mult;
+                            mult = 1;
+                            continue;
+                        }
+                    }
+                    mult++;
+                }
+                return count % 2 == 0;
+            }
+            static bool IsPrime(long number)
+            {
+                if (number <= 1) return false;
+                if (number == 2 || number == 3 || number == 5) return true;
+                if (number % 2 == 0 || number % 3 == 0 || number % 5 == 0) return false;
+                long limit = (long)Math.Floor(Math.Sqrt(number));
+                long i = 6;
+                while (i <= limit)
+                {
+                    if (number % (i + 1) == 0 || number % (i + 5) == 0) return false;
+                    i += 6;
+                }
+                return true;
+            }
             public int Mobius(double n)
             {
-                
-
-
+                long number = (long)n;
+                if (IsDivisibleBySquareAnyPrime(number))
+                {
+                    return 0;
+                }
+                else if (!IsDivisibleBySquareAnyPrime(number) && HasEvenNumberPrimeFactors(number))
+                {
+                    return 1;
+                }
+                else return -1;
             }
         }
 
@@ -113,5 +174,5 @@ namespace Codewars0
 
 
 
-        }
+    }
 }
