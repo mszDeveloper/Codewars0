@@ -96,14 +96,14 @@ namespace Codewars0
                     if (IsPrime(div))
                     {
                         long divSq = (long)Math.Pow(div, 2);
-                        if (n % divSq != 0)
+                        if (n % divSq == 0)
                         {
-                            return false;
+                            return true;
                         }
                     }
                     div++;
                 }
-                return true;
+                return false;
             }
             //Имеет четное количество простых множителей.
             static bool HasEvenNumberPrimeFactors(long n)
@@ -142,6 +142,7 @@ namespace Codewars0
             }
             public int Mobius(double n)
             {
+                Console.WriteLine(n);
                 long number = (long)n;
                 if (IsDivisibleBySquareAnyPrime(number))
                 {
@@ -155,12 +156,51 @@ namespace Codewars0
             }
         }
 
+        //https://www.codewars.com/kata/523b623152af8a30c6000027
+        public static double Square(double n)
+        {
+            return n * n;
+        }
 
+        //https://www.codewars.com/kata/57a429e253ba3381850000fb
+        public static string Bmi(double weight, double height)
+        {
+            double bmi = weight / Math.Pow(height, 2);
+            if (bmi <= 18.5)
+            {
+                return "Underweight";
+            }
+            if (bmi <= 25.0)
+            {
+                return "Normal";
+            }
+            if (bmi <= 30.0)
+            {
+                return "Overweight";
+            }
+            if (bmi > 30.0)
+            {
+                return "Obese";
+            }
+            return "";
+        }
 
-
-
-
-
+        //https://www.codewars.com/kata/57c6b44f58da9ea6c20003da
+        public static double Geo_Mean(int[] nums, double arith_mean)
+        {
+            double sum = 0;
+            double product = 1;
+            foreach (var item in nums)
+            {
+                sum += item;
+                product *= item;
+            }
+            int fullLength = nums.Length + 1;
+            double fullSum = arith_mean * fullLength;
+            double missingNumber = fullSum - sum;
+            product *= missingNumber;
+            return Math.Pow(product, 1.0 / fullLength);
+        }
 
 
 
