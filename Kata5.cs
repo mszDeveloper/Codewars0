@@ -202,9 +202,20 @@ namespace Codewars0
             return Math.Pow(product, 1.0 / fullLength);
         }
 
+        //https://www.codewars.com/kata/5545f109004975ea66000086
+        public static bool isDivisible(long n, long x, long y)
+        {
+            return n % x == 0 && n % y == 0;
+        }
 
-
-
+        //https://www.codewars.com/kata/556deca17c58da83c00002db
+        public class Xbonacci
+        {
+            public double[] Tribonacci(double[] signature, int n)
+            {
+                // hackonacci me
+            }
+        }
 
 
 
