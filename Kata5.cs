@@ -213,12 +213,73 @@ namespace Codewars0
         {
             public double[] Tribonacci(double[] signature, int n)
             {
-                // hackonacci me
+                if (n == 0)
+                {
+                    return Array.Empty<double>();
+                }
+                double[] result = new double[n];
+                if (n <= 3)
+                {
+                    for (int i = 0; i < n; i++)
+                    {
+                        result[i] = signature[i];
+                    }
+                    return result;
+                }
+                for (int i = 0; i < 3; i++)
+                {
+                    result[i] = signature[i];
+                }
+                for (int i = 3; i < n; i++)
+                {
+                    result[i] = result[i - 1] + result[i - 2] + result[i - 3];
+                }
+                return result;
             }
+
+            //https://www.codewars.com/kata/556e0fccc392c527f20000c5
+            public double[] xbonacci(double[] signature, int n)
+            {
+                if (n == 0)
+                {
+                    return Array.Empty<double>();
+                }
+                double[] result = new double[n];
+                if (n <= signature.Length)
+                {
+                    for (int i = 0; i < n; i++)
+                    {
+                        result[i] = signature[i];
+                    }
+                    return result;
+                }
+                for (int i = 0; i < signature.Length; i++)
+                {
+                    result[i] = signature[i];
+                }
+                for (int i = signature.Length; i < n; i++)
+                {
+                    double sum = 0;
+                    for (int k = 1; k <= signature.Length; k++)
+                    {
+                        sum += result[i - k];
+                    }
+                    result[i] = sum;
+                }
+                return result;
+            }
+            /*
+             *     public double[] xbonacci(double[] signature, int n)
+                        {
+                            double[] xbonacci = new double[n];
+                            Array.Copy(signature, xbonacci, Math.Min(n, signature.Length));
+                            for (int i = signature.Length; i < n; i++)
+                                for (int j = i - signature.Length; j < i; j++)
+                                    xbonacci[i] += xbonacci[j];
+                            return xbonacci;
+                        }
+             */
         }
-
-
-
 
 
 
