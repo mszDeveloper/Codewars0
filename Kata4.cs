@@ -259,6 +259,7 @@ namespace Codewars0
 
         //https://www.codewars.com/kata/57f609022f4d534f05000024
 
+        //https://www.codewars.com/kata/57f609022f4d534f05000024
         public static int Stray(int[] numbers)
         {
             for (int i = 1; i < numbers.Length - 1; i++)
