@@ -80,6 +80,31 @@ namespace Codewars0
              */
         }
 
+        //https://www.codewars.com/kata/55688b4e725f41d1e9000065
+        public static long Fibonacci(int max)
+        {
+            long a = 0;
+            long b = 1;
+            long sum = 0;
+            while (true)
+            {
+                long temp = a;
+                a = b;
+                b = temp + a;
+                if (a % 2 == 0)
+                {
+                    if (a < max)
+                    {
+                        sum += a;
+                    }
+                    else
+                    {
+                        return sum;
+                    }
+                }
+            }
+        }
+
         //https://www.codewars.com/kata/5648b12ce68d9daa6b000099
         public static int Number(List<int[]> peopleListInOut)
         {
