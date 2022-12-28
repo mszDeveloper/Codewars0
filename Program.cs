@@ -19,7 +19,7 @@ namespace Codewars0
             //}
             //int result = Kata4.Intervals.SumIntervals(new (int, int)[] { (1, 5), (10, 20), (1, 6), (16, 19), (5, 11) });
             //bool result = Kata4.PowerOf4(1024);
-            double result = Kata5.Geo_Mean(new int[] { 1, 2 }, 3);
+            int result = Kata7.Persist.Persistence(39);
             Console.WriteLine("result == ");
             Console.WriteLine(result);
 

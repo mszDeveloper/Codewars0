@@ -262,6 +262,28 @@ namespace Codewars0
             {
                 return number == (int)number;
             }
+            //static bool IsInteger(double number)
+            //{
+            //    //return number == (long)number;
+            //    //return Math.Abs(number % 1) <= (Double.Epsilon * 100);
+            //    //return (double)((int)number) == number;
+            //    return Math.Ceiling(number) == Math.Floor(number);
+            //}
+            //static bool IsFinite(double d)
+            //{
+            //    long bits = BitConverter.DoubleToInt64Bits(d);
+            //    return (bits & 0x7FFFFFFFFFFFFFFF) < 0x7FF0000000000000;
+            //}
+            //static bool IsInteger(double value) => IsFinite(value) && (value == Math.Truncate(value));
+            //static bool IsInteger(decimal value) => value == Math.Truncate(value);
+
+            //public static long FindNextSquare(long sq)
+            //{
+            //    long r = (long)Math.Sqrt(sq);
+            //    if (r * r != sq)
+            //        return -1;
+            //    return ((r + 1) * (r + 1));
+            //}
             public static int NSquaresFor(int n)
             {
                 if (IsInteger(Math.Sqrt(n)))
