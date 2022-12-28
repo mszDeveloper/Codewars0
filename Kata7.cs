@@ -47,7 +47,18 @@ namespace Codewars0
             return ((r + 1) * (r + 1));
         }
 
+        //https://www.codewars.com/kata/515e271a311df0350d00000f
+        public static int SquareSum(int[] numbers)
+        {
+            int sum = 0;
+            foreach (var item in numbers)
+            {
+                sum += item * item;
+            }
+            return sum;
+        }
 
+        //https://www.codewars.com/kata/square-sums-simple
 
 
 
