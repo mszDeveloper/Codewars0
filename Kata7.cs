@@ -59,7 +59,75 @@ namespace Codewars0
         }
 
         //https://www.codewars.com/kata/square-sums-simple
+        public class SquareSumSimple
+        {
+            static bool IsPerfectSquare(long number)
+            {
+                long root = (long)Math.Sqrt(number);
+                return root * root == number;
+            }
+            static void Swap(ref int[] arr, int index1, int index2)
+            {
+                int tmp = arr[index1];
+                arr[index1] = arr[index2];
+                arr[index2] = tmp;
+            }
+            static int[] CreateArray(int length)
+            {
+                int[] arr = new int[length];
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    arr[i] = i + 1;
+                }
+                return arr;
+            }
+            static int FindNextPower(int number, int pow)
+            {
+                double root = Math.Pow(number + 1, 1.0 / pow);
+                double ceilRoot = Math.Ceiling(root);
+                double nextPower = Math.Pow(ceilRoot, pow);
+                return (int)nextPower;
+            }
+            public static int[] SquareSum(int n)
+            {
+                //int[] arr = CreateArray(n);
+                //List<int> listArr = new(arr);
+                //int index = 0;
 
+                List<int[]> listPairs = new();
+
+                while (true)
+                {
+                    int nextSquare = FindNextPower(n, 2);    
+                    int first = nextSquare - n;
+                    int last = ((nextSquare + 1) / 2) - 1;
+                    int count = first;
+                    while (count < last)
+                    {
+                        listPairs.Add(new int[2] { count, nextSquare - count });
+                        count++;
+                    }
+                    n = first - 1;
+                    if (n == 0)
+                    {
+                        break;
+                    }
+                    if (n < 15)
+                    {
+                        return Array.Empty<int>();
+                    }
+
+                }
+                foreach (var item in listPairs)
+                {
+                    Console.WriteLine(item[0]);
+                    Console.WriteLine(item[1]);
+                }
+                return Array.Empty<int>();
+                //return arr;
+            }
+
+        }
 
 
 

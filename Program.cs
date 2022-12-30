@@ -13,15 +13,15 @@ namespace Codewars0
             //int[] result = Kata2.SnailSolution.Snail(matrix);
             //int result = Kata2.SumOfSquares.NSquaresFor(3456);
             //long[] result = Kata3.OddDigPrime.OnlyOddDigPrimes(20);
-            //foreach (var item in result)
-            //{
-            //    Console.WriteLine(item);
-            //}
             //int result = Kata4.Intervals.SumIntervals(new (int, int)[] { (1, 5), (10, 20), (1, 6), (16, 19), (5, 11) });
             //bool result = Kata4.PowerOf4(1024);
-            int result = Kata7.Persist.Persistence(39);
+            int[] result = Kata7.SquareSumSimple.SquareSum(35);
             Console.WriteLine("result == ");
-            Console.WriteLine(result);
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
+            //Console.WriteLine(result);
 
             ///////////////////////////////////////////
             Console.WriteLine("Ready!");
