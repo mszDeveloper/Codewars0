@@ -88,44 +88,93 @@ namespace Codewars0
                 double nextPower = Math.Pow(ceilRoot, pow);
                 return (int)nextPower;
             }
+            static bool IsNumberInArr(ref List<int> arr, int n)
+            {
+                if (arr.Count == 0)
+                {
+                    return false;
+                }
+                foreach (var item in arr)
+                {
+                    if (item == n)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
             public static int[] SquareSum(int n)
             {
-                //int[] arr = CreateArray(n);
-                //List<int> listArr = new(arr);
-                //int index = 0;
-
-                List<int[]> listPairs = new();
-
-                while (true)
+                List<int> arr = new();
+                for (int i = 1; i <= n; i++)
                 {
-                    int nextSquare = FindNextPower(n, 2);    
-                    int first = nextSquare - n;
-                    int last = ((nextSquare + 1) / 2) - 1;
-                    int count = first;
-                    while (count < last)
+                    if (!IsNumberInArr(ref arr, i))
                     {
-                        listPairs.Add(new int[2] { count, nextSquare - count });
-                        count++;
+                        arr.Add(i);
                     }
-                    n = first - 1;
-                    if (n == 0)
+                    else continue;
+                    bool isSumFind = false;
+                    for (int j = 1; j <= n; j++)
                     {
-                        break;
+                        if (i == j) continue;
+                        if (IsPerfectSquare(i + j))
+                        {
+                            if (!IsNumberInArr(ref arr, j))
+                            {
+                                arr.Add(j);
+                                i = j;
+                                j = 0;
+                            }
+                            else continue;
+                        }
+                        else continue;
                     }
-                    if (n < 15)
-                    {
-                        return Array.Empty<int>();
-                    }
-
                 }
-                foreach (var item in listPairs)
+                if (arr.Count == n)
                 {
-                    Console.WriteLine(item[0]);
-                    Console.WriteLine(item[1]);
+                    return arr.ToArray();
                 }
-                return Array.Empty<int>();
-                //return arr;
+                else return Array.Empty<int>();
             }
+
+            //public static int[] SquareSum(int n)
+            //{
+            //    //int[] arr = CreateArray(n);
+            //    //List<int> listArr = new(arr);
+            //    //int index = 0;
+
+            //    List<int[]> listPairs = new();
+
+            //    //while (true)
+            //    //{
+            //        int nextSquare = FindNextPower(n, 2);    
+            //        int first = nextSquare - n;
+            //        int last = (nextSquare - 1) / 2;
+            //        int count = first;
+            //        while (count <= last)
+            //        {
+            //            listPairs.Add(new int[2] { count, nextSquare - count });
+            //            count++;
+            //        }
+            //    //    n = first - 1;
+            //    //    if (n == 0)
+            //    //    {
+            //    //        break;
+            //    //    }
+            //    //    if (n < 15)
+            //    //    {
+            //    //        return Array.Empty<int>();
+            //    //    }
+
+            //    //}
+            //    foreach (var item in listPairs)
+            //    {
+            //        Console.WriteLine(item[0]);
+            //        Console.WriteLine(item[1]);
+            //    }
+            //    return Array.Empty<int>();
+            //    //return arr;
+            //}
 
         }
 
