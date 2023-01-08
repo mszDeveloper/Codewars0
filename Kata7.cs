@@ -108,33 +108,36 @@ namespace Codewars0
                 List<int> arr = new();
                 for (int i = 1; i <= n; i++)
                 {
+                    arr.Clear();
                     if (!IsNumberInArr(ref arr, i))
                     {
                         arr.Add(i);
+                        Console.WriteLine("i = " + i.ToString());
                     }
                     else continue;
-                    bool isSumFind = false;
+                    //bool isSumFind = false;
+                    int k = i;
                     for (int j = 1; j <= n; j++)
                     {
-                        if (i == j) continue;
-                        if (IsPerfectSquare(i + j))
+                        if (k != j && IsPerfectSquare(k + j) && !IsNumberInArr(ref arr, j))
                         {
-                            if (!IsNumberInArr(ref arr, j))
+                            arr.Add(j);
+                            Console.WriteLine("j = " + j.ToString());
+                            k = j;
+                            j = 0;
+                            if (arr.Count == n)
                             {
-                                arr.Add(j);
-                                i = j;
-                                j = 0;
+                                return arr.ToArray();
                             }
-                            else continue;
                         }
                         else continue;
                     }
                 }
-                if (arr.Count == n)
-                {
+                //if (arr.Count == n)
+                //{
                     return arr.ToArray();
-                }
-                else return Array.Empty<int>();
+                //}
+                //else return Array.Empty<int>();
             }
 
             //public static int[] SquareSum(int n)

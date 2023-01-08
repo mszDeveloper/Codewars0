@@ -15,7 +15,7 @@ namespace Codewars0
             //long[] result = Kata3.OddDigPrime.OnlyOddDigPrimes(20);
             //int result = Kata4.Intervals.SumIntervals(new (int, int)[] { (1, 5), (10, 20), (1, 6), (16, 19), (5, 11) });
             //bool result = Kata4.PowerOf4(1024);
-            int[] result = Kata7.SquareSumSimple.SquareSum(35);
+            int[] result = Kata7.SquareSumSimple.SquareSum(15);
             Console.WriteLine("result == ");
             foreach (var item in result)
             {
