@@ -103,6 +103,10 @@ namespace Codewars0
                 }
                 return false;
             }
+            public static int[] SquareSumRec(int n)
+            {
+
+            }
             public static int[] SquareSum(int n)
             {
                 List<int> arr = new();
@@ -135,7 +139,7 @@ namespace Codewars0
                 }
                 //if (arr.Count == n)
                 //{
-                    return arr.ToArray();
+                return arr.ToArray();
                 //}
                 //else return Array.Empty<int>();
             }
