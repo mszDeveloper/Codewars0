@@ -17,10 +17,10 @@ namespace Codewars0
             //bool result = Kata4.PowerOf4(1024);
             int[] result = Kata7.SquareSumSimple.SquareSum(15);
             Console.WriteLine("result == ");
-            foreach (var item in result)
-            {
-                Console.WriteLine(item);
-            }
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
             //Console.WriteLine(result);
 
             ///////////////////////////////////////////

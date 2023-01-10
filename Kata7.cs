@@ -81,7 +81,7 @@ namespace Codewars0
                 }
                 return arr;
             }
-            static int FindNextPower(int number, int pow)
+            static int FindNextPower(int number, int pow = 2)
             {
                 double root = Math.Pow(number + 1, 1.0 / pow);
                 double ceilRoot = Math.Ceiling(root);
@@ -103,11 +103,22 @@ namespace Codewars0
                 }
                 return false;
             }
-            public static int[] SquareSumRec(int n)
-            {
-
-            }
             public static int[] SquareSum(int n)
+            {
+                int a = 7;
+                int b = 0;
+                int c = a;
+                while (true)
+                {
+                    c = FindNextPower(c);
+                    b = c - a;
+                    if (b == a) continue;
+                    if (b > n) break;
+                    Console.WriteLine(b);
+                }
+                return null;
+            }
+            public static int[] SquareSum2(int n)
             {
                 List<int> arr = new();
                 for (int i = 1; i <= n; i++)
@@ -144,7 +155,7 @@ namespace Codewars0
                 //else return Array.Empty<int>();
             }
 
-            //public static int[] SquareSum(int n)
+            //public static int[] SquareSum1(int n)
             //{
             //    //int[] arr = CreateArray(n);
             //    //List<int> listArr = new(arr);
