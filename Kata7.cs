@@ -103,57 +103,85 @@ namespace Codewars0
                 }
                 return false;
             }
-            public static int[] SquareSum(int n)
+
+            static int[] SquareSumRec(int a, int n, ref List<int> arr)
             {
-                int a = 7;
                 int b = 0;
                 int c = a;
                 while (true)
                 {
                     c = FindNextPower(c);
                     b = c - a;
-                    if (b == a) continue;
+                    if (b == a || IsNumberInArr(ref arr, b)) continue;
                     if (b > n) break;
-                    Console.WriteLine(b);
+                    List<int> arrNext = new(arr);
+                    //Console.WriteLine(b);
+                    arrNext.Add(b);
+                    if (arrNext.Count == n)
+                    {
+                        return arrNext.ToArray();
+                    }
+                    int[] resultArr = SquareSumRec(b, n, ref arrNext);
+                    if (resultArr != null)
+                    {
+                        return resultArr;
+                    }
+                    //Console.WriteLine("===");
                 }
                 return null;
             }
-            public static int[] SquareSum2(int n)
+            public static int[] SquareSum(int n)
             {
-                List<int> arr = new();
-                for (int i = 1; i <= n; i++)
+                for (int a = 1; a <= n; a++)
                 {
-                    arr.Clear();
-                    if (!IsNumberInArr(ref arr, i))
+                    List<int> arr = new(n);
+                    arr.Add(a);
+                    //Console.WriteLine("a = " + a.ToString());
+                    int[] resultArr = SquareSumRec(a, n, ref arr);
+                    //Console.WriteLine("===========");
+                    if (resultArr != null)
                     {
-                        arr.Add(i);
-                        Console.WriteLine("i = " + i.ToString());
-                    }
-                    else continue;
-                    //bool isSumFind = false;
-                    int k = i;
-                    for (int j = 1; j <= n; j++)
-                    {
-                        if (k != j && IsPerfectSquare(k + j) && !IsNumberInArr(ref arr, j))
-                        {
-                            arr.Add(j);
-                            Console.WriteLine("j = " + j.ToString());
-                            k = j;
-                            j = 0;
-                            if (arr.Count == n)
-                            {
-                                return arr.ToArray();
-                            }
-                        }
-                        else continue;
+                        return resultArr;
                     }
                 }
-                //if (arr.Count == n)
-                //{
-                return arr.ToArray();
-                //}
-                //else return Array.Empty<int>();
+                return null;
             }
+            //public static int[] SquareSum2(int n)
+            //{
+            //    List<int> arr = new();
+            //    for (int i = 1; i <= n; i++)
+            //    {
+            //        arr.Clear();
+            //        if (!IsNumberInArr(ref arr, i))
+            //        {
+            //            arr.Add(i);
+            //            Console.WriteLine("i = " + i.ToString());
+            //        }
+            //        else continue;
+            //        //bool isSumFind = false;
+            //        int k = i;
+            //        for (int j = 1; j <= n; j++)
+            //        {
+            //            if (k != j && IsPerfectSquare(k + j) && !IsNumberInArr(ref arr, j))
+            //            {
+            //                arr.Add(j);
+            //                Console.WriteLine("j = " + j.ToString());
+            //                k = j;
+            //                j = 0;
+            //                if (arr.Count == n)
+            //                {
+            //                    return arr.ToArray();
+            //                }
+            //            }
+            //            else continue;
+            //        }
+            //    }
+            //    //if (arr.Count == n)
+            //    //{
+            //    return arr.ToArray();
+            //    //}
+            //    //else return Array.Empty<int>();
+            //}
 
             //public static int[] SquareSum1(int n)
             //{
