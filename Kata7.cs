@@ -224,9 +224,58 @@ namespace Codewars0
 
         }
 
+        //https://www.codewars.com/kata/54da539698b8a2ad76000228
+        public static bool IsValidWalk(string[] walk)
+        {
+            if (walk.Length != 10) return false;
+            Vector2 pos = Vector2.Zero;
+            for (int i = 0; i < 10; i++)
+            {
+                if (walk[i] == "w") pos.X--;
+                if (walk[i] == "e") pos.X++;
+                if (walk[i] == "s") pos.Y--;
+                if (walk[i] == "n") pos.Y++;
+            }
+            return pos == Vector2.Zero;
+        }
 
-
-
+        //https://www.codewars.com/kata/57eb8fcdf670e99d9b000272
+        public static string High(string s)
+        {
+            int i = 1;
+            string alphabet = "abcdefghijklmnopqrstuvwxyz";
+            Dictionary<char, int> dict = new();
+            foreach (var item in alphabet)
+            {
+                dict.Add(item, i);
+                i++;
+            }
+            int high = 0;
+            int score = 0;
+            string highStr = String.Empty;
+            StringBuilder currentStr = new();
+            foreach (var item in s)
+            {
+                if (item == ' ')
+                {
+                    if (score > high)
+                    {
+                        high = score;
+                        highStr = currentStr.ToString();
+                    }
+                    score = 0;
+                    currentStr.Clear();
+                    continue;
+                }
+                currentStr.Append(item);
+                score += dict.GetValueOrDefault(item);
+            }
+            if (score > high)
+            {
+                highStr = currentStr.ToString();
+            }
+            return highStr;
+        }
 
     }
 }
