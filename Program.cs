@@ -15,21 +15,21 @@ namespace Codewars0
             //long[] result = Kata3.OddDigPrime.OnlyOddDigPrimes(20);
             //int result = Kata4.Intervals.SumIntervals(new (int, int)[] { (1, 5), (10, 20), (1, 6), (16, 19), (5, 11) });
             //bool result = Kata4.PowerOf4(1024);
-            int[] result = Kata7.SquareSumSimple.SquareSum(15);
+            string result = Kata8.DuplicateEncode("din");
 
             Console.WriteLine("result == ");
-            if (result == null) 
-            {
-                Console.WriteLine("null");
-            }
-            else
-            {
-                foreach (var item in result)
-                {
-                    Console.WriteLine(item);
-                }
-            }
-            //Console.WriteLine(result);
+            //if (result == null) 
+            //{
+            //    Console.WriteLine("null");
+            //}
+            //else
+            //{
+            //    foreach (var item in result)
+            //    {
+            //        Console.WriteLine(item);
+            //    }
+            //}
+            Console.WriteLine(result);
 
             ///////////////////////////////////////////
             Console.WriteLine("Ready!");
