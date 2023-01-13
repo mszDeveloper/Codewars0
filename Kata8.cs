@@ -37,7 +37,43 @@ namespace Codewars0
             return result.ToString();
         }
 
+        //https://www.codewars.com/kata/5596f6e9529e9ab6fb000014
+        public class CalculateStringRotation
+        {
+            public static int ShiftedDiff(string first, string second)
+            {
+                if (first == second) return 0;
+                if (first.ToLower() == second.ToLower()) return -1;
+                if (first.Length != second.Length) return -1;
 
+                int length = first.Length;
+                StringBuilder firstB = new(first);
+                for (int i = 1; i <= length; i++)
+                {
+                    RotateStringForward(ref firstB);
+                    Console.WriteLine(firstB);
+                    if (firstB.ToString() == second) return i;
+                }
+                return -1;
+            }
+            static void RotateStringForward(ref StringBuilder str)
+            {
+                int length = str.Length;
+                var last = str[length - 1];
+                for (int i = length - 1; i > 0; i--)
+                {
+                    str[i] = str[i - 1];
+                }
+                str[0] = last;
+            }
+
+            //public static int ShiftedDiff(string first, string second)
+            //{
+            //    if (second.Length != first.Length)
+            //        return -1;
+            //    return (second + second).IndexOf(first);
+            //}
+        }
 
 
 

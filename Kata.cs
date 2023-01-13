@@ -224,7 +224,7 @@ namespace Codewars0
                         }
                         else
                         {
-                            RotateString(ref chunk);
+                            RotateStringBackward(ref chunk);
                         }
                         newStrng.Append(chunk);
                         chunk.Clear();
@@ -250,7 +250,7 @@ namespace Codewars0
                     str[str.Length - 1 - index] = tmpChar;
                 }
             }
-            public static void RotateString(ref StringBuilder str)
+            public static void RotateStringBackward(ref StringBuilder str)
             {
                 var first = str[0];
                 for (int i = 0; i < str.Length - 1; i++)
