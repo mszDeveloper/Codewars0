@@ -46,12 +46,10 @@ namespace Codewars0
                 if (first.ToLower() == second.ToLower()) return -1;
                 if (first.Length != second.Length) return -1;
 
-                int length = first.Length;
                 StringBuilder firstB = new(first);
-                for (int i = 1; i <= length; i++)
+                for (int i = 1; i <= first.Length; i++)
                 {
                     RotateStringForward(ref firstB);
-                    Console.WriteLine(firstB);
                     if (firstB.ToString() == second) return i;
                 }
                 return -1;
@@ -75,9 +73,63 @@ namespace Codewars0
             //}
         }
 
+        //https://www.codewars.com/kata/580755730b5a77650500010c
+        public static string SortMyString(string s)
+        {
+            StringBuilder even = new();
+            StringBuilder odd = new();
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (i % 2 == 0) even.Append(s[i]);
+                else odd.Append(s[i]);
+            }
+            return even.ToString() + " " + odd.ToString();
+        }
 
+        //https://www.codewars.com/kata/5ae43ed6252e666a6b0000a4
+        public class JomoPipi
+        {
+            public static string jumbledString(string s, long n)
+            {
+                //Console.WriteLine(s.Length);
+                long period = CalcPeriod(s);
+                //Console.WriteLine(period);
+                long limit = n % period;
+                string result = s;
+                for (int i = 1; i <= limit; i++)
+                {
+                    string even = "";
+                    string odd = "";
+                    for (int j = 0; j < result.Length; j++)
+                    {
+                        if (j % 2 == 0) even += result[j];
+                        else odd += result[j];
+                    }
+                    result = even + odd;
+                    //Console.WriteLine(i.ToString() + " " + result);
+                   //if (result == s) Console.WriteLine("==========");
+                }
+                return result;
+            }
+            static int CalcPeriod(string s)
+            {
+                string result = s;
+                for (int i = 1; i <= s.Length; i++)
+                {
+                    string even = "";
+                    string odd = "";
+                    for (int j = 0; j < result.Length; j++)
+                    {
+                        if (j % 2 == 0) even += result[j];
+                        else odd += result[j];
+                    }
+                    result = even + odd;
+                    if (result == s) return i;
+                }
+                return -1;
+            }
 
-
+        }
 
 
 
