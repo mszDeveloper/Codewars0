@@ -91,28 +91,9 @@ namespace Codewars0
         {
             public static string jumbledString(string s, long n)
             {
-                //Console.WriteLine(s.Length);
-                long period = CalcPeriod(s);
-                //Console.WriteLine(period);
-                long limit = n % period;
-                string result = s;
-                for (int i = 1; i <= limit; i++)
-                {
-                    string even = "";
-                    string odd = "";
-                    for (int j = 0; j < result.Length; j++)
-                    {
-                        if (j % 2 == 0) even += result[j];
-                        else odd += result[j];
-                    }
-                    result = even + odd;
-                    //Console.WriteLine(i.ToString() + " " + result);
-                   //if (result == s) Console.WriteLine("==========");
-                }
-                return result;
-            }
-            static int CalcPeriod(string s)
-            {
+                if (s.Length <= 2) return s;
+                long period = -1;
+                List<string> results = new();
                 string result = s;
                 for (int i = 1; i <= s.Length; i++)
                 {
@@ -124,16 +105,113 @@ namespace Codewars0
                         else odd += result[j];
                     }
                     result = even + odd;
-                    if (result == s) return i;
+                    if (n == i) return result;
+                    if (result == s)
+                    {
+                        period = i;
+                        break;
+                    }
+                    results.Add(result);
                 }
-                return -1;
+                if (period == -1) return "";
+                int limit = (int)(n % period);
+                if (limit == 0) return s;
+                return results[limit - 1];
             }
 
         }
 
+        //https://www.codewars.com/kata/566efcfbf521a3cfd2000056
+        public class FlipNumberClass
+        {
+            public static string FlipNumber(string n)
+            {
+                StringBuilder str = new(n);
+                for (int i = 0; i < n.Length - 1; i++)
+                {
+                    ReverseString(ref str, i);
+                }
+                return str.ToString();
+            }
+            static void ReverseString(ref StringBuilder str, int startIndex)
+            {
+                int limit = (str.Length - startIndex) / 2 + startIndex;
+                for (int firstIndex = startIndex; firstIndex < limit; firstIndex++)
+                {
+                    char tmpChar = str[firstIndex];
+                    int secondIndex = str.Length - 1 - firstIndex + startIndex;
+                    str[firstIndex] = str[secondIndex];
+                    str[secondIndex] = tmpChar;
+                }
+            }
+            public static string FlipNumber1(string s)
+            {
+                if (string.IsNullOrEmpty(s))
+                {
+                    return s;
+                }
 
+                var sb = new StringBuilder(s.Length);
 
+                int i = 0, j = s.Length - 1;
 
+                for (; i < j; ++i, --j)
+                {
+                    sb.Append(s[j]).Append(s[i]);
+                }
+
+                if (i == j)
+                {
+                    sb.Append(s[i]);
+                }
+
+                return sb.ToString();
+            }
+            public static string FlipNumber2(string n)
+            {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < n.Length; i++)
+                    sb.Append(i % 2 == 0 ? n[n.Length - (int)(i / 2) - 1] : n[(int)(i / 2)]);
+                return sb.ToString();
+            }
+            public static string FlipNumber3(string n)
+            {
+                string s = "";
+                for (int i = n.Length - 1; i >= n.Length / 2; i--)
+                {
+                    s += n[i];
+                    if (i != n.Length - 1 - i)
+                        s += n[n.Length - 1 - i];
+                }
+                return s;
+            }
+        }
+
+        //https://www.codewars.com/kata/5ae64f28d2ee274164000118
+        public class JomoPipi1
+        {
+            public static string StringFunc(string s, long x)
+            {
+                StringBuilder str = new(s);
+                for (long i = 0; i < x; i++)
+                {
+                    ReverseString(ref str, i);
+                }
+                return str.ToString();
+            }
+
+            static void ReverseString(ref StringBuilder str, long startIndex)
+            {
+                long limit = (str.Length - startIndex) / 2 + startIndex;
+                for (long firstIndex = startIndex; firstIndex < limit; firstIndex++)
+                {
+                    char tmpChar = str[(int)firstIndex];
+                    long secondIndex = str.Length - 1 - firstIndex + startIndex;
+                    str[(int)firstIndex] = str[(int)secondIndex];
+                    str[(int)secondIndex] = tmpChar;
+                }
+            }
+        }
 
 
 
