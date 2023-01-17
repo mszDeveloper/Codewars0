@@ -192,12 +192,24 @@ namespace Codewars0
         {
             public static string StringFunc(string s, long x)
             {
+                long period = -1;
+                List<StringBuilder> results = new();
                 StringBuilder str = new(s);
-                for (int i = 0; i < x; i++)
+                for (int i = 1; i <= s.Length; i++)
                 {
                     str = FlipStr(ref str);
+                    if (x == i) return str.ToString();
+                    if (str.ToString() == s)
+                    {
+                        period = i;
+                        break;
+                    }
+                    results.Add(str);
                 }
-                return str.ToString();
+                if (period == -1) return "";
+                int limit = (int)(x % period);
+                if (limit == 0) return s;
+                return results[limit - 1].ToString();
             }
             static StringBuilder FlipStr(ref StringBuilder str)
             {
@@ -213,7 +225,7 @@ namespace Codewars0
             }
         }
 
-        //https://www.codewars.com/kata/526571aae218b8ee490006f4
+        
 
 
 
