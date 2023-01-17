@@ -193,26 +193,27 @@ namespace Codewars0
             public static string StringFunc(string s, long x)
             {
                 StringBuilder str = new(s);
-                for (long i = 0; i < x; i++)
+                for (int i = 0; i < x; i++)
                 {
-                    ReverseString(ref str, i);
+                    str = FlipStr(ref str);
                 }
                 return str.ToString();
             }
-
-            static void ReverseString(ref StringBuilder str, long startIndex)
+            static StringBuilder FlipStr(ref StringBuilder str)
             {
-                long limit = (str.Length - startIndex) / 2 + startIndex;
-                for (long firstIndex = startIndex; firstIndex < limit; firstIndex++)
+                StringBuilder newStr = new(str.Length);
+                int i = 0, j = str.Length - 1;
+                while (i < j)
                 {
-                    char tmpChar = str[(int)firstIndex];
-                    long secondIndex = str.Length - 1 - firstIndex + startIndex;
-                    str[(int)firstIndex] = str[(int)secondIndex];
-                    str[(int)secondIndex] = tmpChar;
+                    newStr.Append(str[j]).Append(str[i]);
+                    i++; j--;
                 }
+                if (i == j) newStr.Append(str[i]);
+                return newStr;
             }
         }
 
+        //https://www.codewars.com/kata/526571aae218b8ee490006f4
 
 
 
