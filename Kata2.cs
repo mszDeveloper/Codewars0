@@ -256,12 +256,9 @@ namespace Codewars0
              */
         }
 
+        //https://www.codewars.com/kata/5a3af5b1ee1aaeabfe000084
         public class SumOfSquares
         {
-            static bool IsInteger(double number)
-            {
-                return number == (int)number;
-            }
             //static bool IsInteger(double number)
             //{
             //    //return number == (long)number;
@@ -284,7 +281,8 @@ namespace Codewars0
             //        return -1;
             //    return ((r + 1) * (r + 1));
             //}
-            public static int NSquaresFor(int n)
+
+            public static int NSquaresFor1(int n)
             {
                 if (IsInteger(Math.Sqrt(n)))
                 {
@@ -410,7 +408,26 @@ namespace Codewars0
                 return results.Min();
 
             }
+            public static int NSquaresFor(int n)
+            {
+                if (IsPerfectSquare(n)) return 1;
 
+                //https://ru.wikipedia.org/wiki/Теорема_Ферма_—_Эйлера
+                //https://en.wikipedia.org/wiki/Fermat%27s_theorem_on_sums_of_two_squares
+                if (IsPrime(n))
+                {
+                    if ((n - 1) % 4 == 0) return 2;
+                }
+
+            //https://ru.wikipedia.org/wiki/Теорема_Лагранжа_о_сумме_четырёх_квадратов
+            //https://en.wikipedia.org/wiki/Lagrange%27s_four-square_theorem
+
+            //представить в виде суммы квадратов, затем суммировать слагаемые и проверять на совершенный квадрат.
+
+            //https://ru.stackoverflow.com/questions/1174981/Разложить-число-на-кратчайшую-сумму-квадратов
+
+
+            }
             public static int NSquaresForRec(int n)
             {
                 int result = 0;
@@ -428,6 +445,29 @@ namespace Codewars0
                 return result;
             }
 
+            static bool IsPerfectSquare(long number)
+            {
+                long root = (long)Math.Sqrt(number);
+                return root * root == number;
+            }
+            static bool IsPrime(long number)
+            {
+                if (number <= 1) return false;
+                if (number == 2 || number == 3 || number == 5) return true;
+                if (number % 2 == 0 || number % 3 == 0 || number % 5 == 0) return false;
+                long limit = (long)Math.Floor(Math.Sqrt(number));
+                long i = 6;
+                while (i <= limit)
+                {
+                    if (number % (i + 1) == 0 || number % (i + 5) == 0) return false;
+                    i += 6;
+                }
+                return true;
+            }
+            static bool IsInteger(double number)
+            {
+                return number == (int)number;
+            }
 
 
         }
