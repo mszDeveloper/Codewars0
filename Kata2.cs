@@ -410,41 +410,28 @@ namespace Codewars0
             }
             public static int NSquaresFor(int n)
             {
+                Console.WriteLine(n);
                 if (IsPerfectSquare(n)) return 1;
 
                 //https://ru.wikipedia.org/wiki/Теорема_Ферма_—_Эйлера
                 //https://en.wikipedia.org/wiki/Fermat%27s_theorem_on_sums_of_two_squares
-                if (IsPrime(n))
-                {
-                    if ((n - 1) % 4 == 0) return 2;
-                }
+                //https://www.youtube.com/watch?v=ZltHgJU0t5M
+                if (n % 4 == 1 && IsPrime(n)) return 2;
 
-            //https://ru.wikipedia.org/wiki/Теорема_Лагранжа_о_сумме_четырёх_квадратов
-            //https://en.wikipedia.org/wiki/Lagrange%27s_four-square_theorem
+                bool IsNumberHaveTwoSquare = true;
+                if (n % 4 == 3) IsNumberHaveTwoSquare = false;
+                if (n % 3 == 0 && n % 9 != 0) IsNumberHaveTwoSquare = false;
+                if (IsNumberHaveTwoSquare) return 2;
+                return 3;
+                //https://ru.wikipedia.org/wiki/Теорема_Лагранжа_о_сумме_четырёх_квадратов
+                //https://en.wikipedia.org/wiki/Lagrange%27s_four-square_theorem
 
-            //представить в виде суммы квадратов, затем суммировать слагаемые и проверять на совершенный квадрат.
+                //представить в виде суммы квадратов, затем суммировать слагаемые и проверять на совершенный квадрат.
 
-            //https://ru.stackoverflow.com/questions/1174981/Разложить-число-на-кратчайшую-сумму-квадратов
+                //https://ru.stackoverflow.com/questions/1174981/Разложить-число-на-кратчайшую-сумму-квадратов
 
 
             }
-            public static int NSquaresForRec(int n)
-            {
-                int result = 0;
-                int first = 0;
-                for (int i = n; i >= 4; i--)
-                {
-                    if (IsInteger(Math.Sqrt(i)))
-                    {
-                        first = i;
-                        result++;
-                        break;
-                    }
-                }
-                result += NSquaresForRec(n - first);
-                return result;
-            }
-
             static bool IsPerfectSquare(long number)
             {
                 long root = (long)Math.Sqrt(number);
@@ -464,6 +451,23 @@ namespace Codewars0
                 }
                 return true;
             }
+            public static int NSquaresForRec(int n)
+            {
+                int result = 0;
+                int first = 0;
+                for (int i = n; i >= 4; i--)
+                {
+                    if (IsInteger(Math.Sqrt(i)))
+                    {
+                        first = i;
+                        result++;
+                        break;
+                    }
+                }
+                result += NSquaresForRec(n - first);
+                return result;
+            }
+
             static bool IsInteger(double number)
             {
                 return number == (int)number;
