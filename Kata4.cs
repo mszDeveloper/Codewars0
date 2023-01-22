@@ -210,32 +210,69 @@ namespace Codewars0
         }
 
         //https://www.codewars.com/kata/544d114f84e41094a9000439
-        public static bool PowerOf4(object n)
+        public class Power
         {
-            if (n is Int16 || n is Int32)
+            public static bool PowerOf4_1(object n)
             {
-                int number = (int)n;
-                Console.WriteLine(number);
-                if (number == 1)
+                if (n is Int16 || n is Int32)
                 {
-                    return true;
-                }
-                if (number <= 0 || number % 4 != 0)
-                {
-                    return false;
-                }
-                double numberD = (double)number;
-                while (numberD > 1)
-                {
-                    numberD /= 4;
-                    if (numberD == 1)
+                    int number = (int)n;
+                    Console.WriteLine(number);
+                    if (number == 1)
                     {
                         return true;
                     }
+                    if (number <= 0 || number % 4 != 0)
+                    {
+                        return false;
+                    }
+                    double numberD = (double)number;
+                    while (numberD > 1)
+                    {
+                        numberD /= 4;
+                        if (numberD == 1 || number == 2)
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
                 }
-                return false;
+                else return false;
             }
-            else return false;
+            public static bool PowerOf4(object n)
+            {
+                if (n is Int16 || n is Int32)
+                {
+                    int number = (int)n;
+                    Console.WriteLine(number);
+                    if (number == 1)
+                    {
+                        return true;
+                    }
+                    if (number <= 0 || number % 4 != 0)
+                    {
+                        return false;
+                    }
+                    double i = Math.Log(number) / Math.Log(4);
+                    return i == (int)i;
+                }
+                else return false;
+            }
+            static bool IsInteger(double number)
+            {
+                return number == (int)number;
+            }
+            public static int PowerOf4Line()
+            {
+                double i = 0;
+                while ((int)i <= 5)
+                {
+                    //return (int)Math.Pow(4, i);
+                    Console.WriteLine(Math.Pow(4, i));
+                    i += 0.5;
+                }
+                return -1;
+            }
         }
 
         //https://www.codewars.com/kata/55f2b110f61eb01779000053
