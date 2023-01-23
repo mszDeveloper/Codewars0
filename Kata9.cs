@@ -78,13 +78,66 @@ namespace Codewars0
             }
         }
 
+        //https://www.codewars.com/kata/59a8570b570190d313000037
+        public static long SumCubes(int n)
+        {
+            //long sum = 0;
+            //for (long i = 1; i <= n; i++)
+            //{
+            //    sum += i * i * i;
+            //}
+            //return sum;
+            long resultSq = ((n + 1) * n / 2);
+            return resultSq * resultSq;
+        }
 
-
-
-
-
-
-
+        public static string EvenOrOdd(int number)
+        {
+            if (number % 2 == 0) return "even";
+            else return "odd";
+        }
+        public static string FilterNumbers(string str)
+        {
+            StringBuilder result = new();
+            foreach (var item in str)
+            {
+                if (!Char.IsNumber(item)) result.Append(item);
+            }
+            return result.ToString();
+        }
+        public static string HowManyDalmatians(int n)
+        {
+            List<string> dogs = new()
+            {
+                "Hardly any",
+                "More than a handful!",
+                "Woah that's a lot of dogs!",
+                "101 DALMATIONS!!!"
+            };
+            if (n <= 10) return dogs[0];
+            if (n <= 50) return dogs[1];
+            if (n <= 101) return dogs[3];
+            return dogs[2];
+        }
+        public int FacCalculation(int startValue)
+        {
+            if (startValue < 0) return 0;
+            if (startValue == 0) return 1;
+            return FacRecursion(startValue);
+        }
+        protected int FacRecursion(int value)
+        {
+            if (value == 1) return 1;
+            return value * FacRecursion(value - 1);
+        }
+        //https://www.codewars.com/kata/54ff0d1f355cfd20e60001fc
+        public static int Factorial(int n)
+        {
+            if (n == 0) return 1;
+            if (n < 0 || n > 12) throw new ArgumentOutOfRangeException();
+            if (n == 1) return 1;
+            return n * Factorial(n - 1);
+        }
 
 
 
