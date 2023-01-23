@@ -138,7 +138,57 @@ namespace Codewars0
             if (n == 1) return 1;
             return n * Factorial(n - 1);
         }
+        //https://www.codewars.com/kata/5a045fee46d843effa000070
+        public class FactDecomp
+        {
+            public static string Decomp(int n)
+            {
+                StringBuilder result = new();
+                for (int p = 2; p <= n; p++)
+                {
+                    if (IsPrime(p))
+                    {
+                        int power = CalcPower(n, p);
+                        result.Append(p);
+                        if (power != 1)
+                        {
+                            result.Append("^").Append(power);
+                        }
+                        result.Append(" * ");
+                    }
+                }
+                result.Remove(result.Length - 3, 3);
+                return result.ToString();
+            }
+            static bool IsPrime(long number)
+            {
+                if (number <= 1) return false;
+                if (number == 2 || number == 3 || number == 5) return true;
+                if (number % 2 == 0 || number % 3 == 0 || number % 5 == 0) return false;
+                long limit = (long)Math.Floor(Math.Sqrt(number));
+                long i = 6;
+                while (i <= limit)
+                {
+                    if (number % (i + 1) == 0 || number % (i + 5) == 0) return false;
+                    i += 6;
+                }
+                return true;
+            }
+            static int CalcPower(int n, int p)
+            {
+                int sum = 0;
+                int pow = 1;
+                while (true)
+                {
+                    int add = (int)Math.Floor(n / Math.Pow(p, pow));
+                    if (add == 0) break;
+                    sum += add;
+                    pow++;
+                }
+                return sum;
+            }
 
+        }
 
 
 

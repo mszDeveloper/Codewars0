@@ -416,6 +416,7 @@ namespace Codewars0
                 //https://ru.wikipedia.org/wiki/Теорема_Ферма_—_Эйлера
                 //https://en.wikipedia.org/wiki/Fermat%27s_theorem_on_sums_of_two_squares
                 //https://www.youtube.com/watch?v=ZltHgJU0t5M
+                //https://www.youtube.com/playlist?list=PL1JJ1jVZ9z5BBcrqGsD4a-bte3BQs6SAM
                 if (n % 4 == 1 && IsPrime(n)) return 2;
 
                 bool IsNumberHaveTwoSquare = true;
