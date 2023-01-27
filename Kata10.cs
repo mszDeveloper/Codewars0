@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
 
 namespace Codewars0
 {
@@ -156,12 +157,97 @@ namespace Codewars0
             //}
         }
 
+        public static string FindNeedle(object[] haystack)
+        {
+            string needle = "needle";
+            for (int i = 0; i < haystack.Length; i++)
+            {
+                if (haystack[i] as string == needle) return "found the " + needle + " at position " + i.ToString();
+            }
+            return String.Empty;
+        }
 
+        //https://www.codewars.com/kata/522551eee9abb932420004a0
+        public class Fibonacci
+        {
+            public int NthFib(int n)
+            {
+                if (n == 1) return 0;
+                if (n == 2) return 1;
+                return NthFib(n - 2) + NthFib(n - 1);
+            }
+            static BigInteger fib(int n)
+            {
+                BigInteger a = 0;
+                BigInteger b = 1;
 
+                for (int i = 0; i < n; i++)
+                {
+                    BigInteger temp = a;
+                    a = b;
+                    b = temp + a;
+                }
 
+                return a;
+            }
 
+            //https://www.codewars.com/kata/5779f894ec8832493f00002d
+            public static List<Tuple<int, int>> FibDigits(int n)
+            {
 
+                //throw new NotImplementedException("Implement me!");
+                BigInteger number = fib(n);
+                Console.WriteLine(number);
+                List<Tuple<int, int>> result = new(10);
+                for (int i = 0; i <= 9; i++)
+                {
+                    result.Add(Tuple.Create(0, i));
+                }
+                while (number > 0)
+                {
+                    int digit = (int)(number % 10);
+                    result[digit] = Tuple.Create(result[digit].Item1 + 1, digit);
+                    number /= 10;
+                }
+                result.Sort((result1, result2) =>
+                {
+                    if (result2.Item1 == result1.Item1) return result2.Item2.CompareTo(result1.Item2);
+                    return result2.Item1.CompareTo(result1.Item1);
+                });
+                for (int i = 0; i < result.Count; i++)
+                {
+                    if (result[i].Item1 == 0)
+                    {
+                        result.RemoveRange(i, result.Count - i);
+                        break;
+                    }
+                }
+                return result;
+            }
 
+        }
+
+        //https://www.codewars.com/kata/541c8630095125aba6000c00
+        public class Number
+        {
+            public static int DigitalRoot(long n)
+            {
+                int sum = 0;
+                while (true)
+                {
+                    while (n > 0)
+                    {
+                        int digit = (int)(n % 10);
+                        sum += digit;
+                        n /= 10;
+                    }
+                    if (sum < 10) return sum;
+                    n = sum;
+                    sum = 0;
+                }
+                //return sum;
+            }
+        }
 
 
 

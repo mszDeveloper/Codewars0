@@ -16,7 +16,7 @@ namespace Codewars0
             //int result = Kata4.Intervals.SumIntervals(new (int, int)[] { (1, 5), (10, 20), (1, 6), (16, 19), (5, 11) });
             //bool result = Kata4.PowerOf4(1024);
             //string result = Kata8.JomoPipi.jumbledString("0123456789", 6);
-            char result = Kata10.FindMissingLetter(new[] { 'O', 'Q', 'R', 'S' });
+            var result = Kata11.LookSay(2014);
 
             Console.WriteLine("result == ");
             //if (result == null) 
