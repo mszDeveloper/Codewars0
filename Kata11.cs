@@ -51,18 +51,59 @@ namespace Codewars0
         }
 
         //https://www.codewars.com/kata/513e08acc600c94f01000001
-        public static string Rgb(int r, int g, int b)
+        public static class RGBClass
         {
-            r = Math.Clamp(r, 0, 255);
-            g = Math.Clamp(g, 0, 255);
-            b = Math.Clamp(b, 0, 255);
+            public static string Rgb(int r, int g, int b)
+            {
+                r = Math.Clamp(r, 0, 255);
+                g = Math.Clamp(g, 0, 255);
+                b = Math.Clamp(b, 0, 255);
 
-            string result;
+                string result;
 
 
 
-            return null;
+                return null;
+            }
+
+            static string DecToHex(int n)
+            {
+                StringBuilder result = new();
+                int rem1 = n % 16;
+                switch (rem1)
+                {
+                    case 10: result.Append('A'); break;
+                    case 11: result.Append('B'); break;
+                    case 12: result.Append('C'); break;
+                    case 13: result.Append('D'); break;
+                    case 14: result.Append('E'); break;
+                    case 15: result.Append('F'); break;
+                    default: result.Append(rem1); break;
+                }                
+                n /= 16;
+                while (n > 0)
+                {
+                    int rem = n % 16;
+                    switch (rem)
+                    {
+                        case 10: result.Insert(0, 'A'); break;
+                        case 11: result.Insert(0, 'B'); break;
+                        case 12: result.Insert(0, 'C'); break;
+                        case 13: result.Insert(0, 'D'); break;
+                        case 14: result.Insert(0, 'E'); break;
+                        case 15: result.Insert(0, 'F'); break;
+                        default: result.Insert(0, rem); break;
+                    }
+                    n /= 16;
+                }
+                return result.ToString();
+            }
         }
+
+
+
+
+
 
     }
 }
