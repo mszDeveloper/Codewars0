@@ -207,7 +207,21 @@ namespace Codewars0
             return (n - 2) * 180;
         }
 
-
+        //https://www.codewars.com/kata/628e3ee2e1daf90030239e8a
+        public static bool Interlockable(ulong a, ulong b)
+        {
+            while (a > 0 && b > 0)
+            {
+                if ((a % 2 & b % 2) == 1) return false;
+                a /= 2;
+                b /= 2;
+            }
+            return true;
+            //public static bool Interlockable(ulong a, ulong b)
+            //{
+            //    return (a & b) == 0;
+            //}
+        }
 
 
 
