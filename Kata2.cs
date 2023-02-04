@@ -419,11 +419,16 @@ namespace Codewars0
                 //https://www.youtube.com/playlist?list=PL1JJ1jVZ9z5BBcrqGsD4a-bte3BQs6SAM
                 if (n % 4 == 1 && IsPrime(n)) return 2;
 
-                bool IsNumberHaveTwoSquare = true;
-                if (n % 4 == 3) IsNumberHaveTwoSquare = false;
-                if (n % 3 == 0 && n % 9 != 0) IsNumberHaveTwoSquare = false;
-                if (IsNumberHaveTwoSquare) return 2;
-                return 3;
+                bool IsNumberDontHaveTwoSquare = (n % 4 == 3) || (n % 3 == 0 && n % 9 != 0);
+                if (IsNumberDontHaveTwoSquare)
+                {
+                    return 4;
+                }
+                else
+                {
+                    return 2;
+                }
+
                 //https://ru.wikipedia.org/wiki/Теорема_Лагранжа_о_сумме_четырёх_квадратов
                 //https://en.wikipedia.org/wiki/Lagrange%27s_four-square_theorem
 
@@ -474,6 +479,113 @@ namespace Codewars0
                 return number == (int)number;
             }
 
+            ///
+            public static int FindNumberOfSquares(int n, int first)
+            {
+                // Assume the first root and go from there.
+                int result = 1;
+                n -= first * first;
+
+                // If in any case (shouldn't ever happen) the first root we passed is too big, return int.MaxValue.
+                if (n < 0)
+                {
+                    return int.MaxValue;
+                }
+
+                // While the number is above zero:
+                // 1. Get the first possible integer root, e.g. for 3622 it would be 60.
+                // 2. Increment result (we found a perfect root), subtract the value from n, e.g. 3622 - 60^2 = 22.
+                // 3. Repeat until we get to 0.
+                while (n != 0)
+                {
+                    int root = (int)Math.Sqrt(n);
+                    result++;
+                    n -= root * root;
+                }
+
+                return result;
+            }
+
+            public static int NSquaresFor2(int n)
+            {
+                Console.WriteLine(n);
+
+                // For n=1, result = 1. For n=2, result = 2.
+                if (n < 3)
+                {
+                    return n;
+                }
+
+                int perfectRoot = (int)Math.Sqrt(n);
+
+                // If number is already a perfect square, return 1.
+                if (perfectRoot * perfectRoot == n)
+                {
+                    return 1;
+                }
+
+                var list = new List<int>();
+
+                // Start from the first possible root (Sqrt(n)) and go down.
+                // i will be the first assumed element in the sequence.
+                // This will not exceed 32000 iterations in the most extreme cases (quite low).
+                for (int i = (int)Math.Sqrt(n); i > 0; --i)
+                {
+                    list.Add(FindNumberOfSquares(n, i));
+                }
+
+                // Select the lowest value out of all.
+                // This is necessary in cases like n=18, where normally the result would be 3 (4^2+1^2+1^2),
+                // but the correct answer is 2 (3^2+3^2).
+                return list.Min();
+            }
+
+            ///
+            private static bool IsPerfectSquare(int n) => Math.Abs(Math.Ceiling(Math.Sqrt(n)) - Math.Floor(Math.Sqrt(n))) < double.Epsilon;
+
+            public static int NSquaresFor3(int n)
+            {
+                if (IsPerfectSquare(n)) return 1;
+                //Now, as long we can divide by 4, do this...
+                while (n % 4 == 0) n /= 4;
+                //Then check if the remainder of a division by 8 equals 7, if it is, the result will be 4 (see 15 for example)
+                if (n % 8 == 7) return 4;
+                //Finally, check the powers
+                for (int p = 0; p * p < n; ++p)
+                    if (IsPerfectSquare(n - p * p)) return 2;
+                //This is the only case left...
+                return 3;
+            }
+
+            ///
+            private static bool isSquare(int x)
+            {
+                return (Math.Sqrt(x) % 1 == 0);
+            }
+
+            //This code is based on Lagrange’s Four Square Theorem.
+            //There can be no more than 4 solutions to this problem, based on this theorem.
+            // Answer 1 is applicable to an input that is actually a perfect square
+            // Answer 2 is the result when the input is the sum of 2 square numbers
+            // Answer 3 is the result when the input not of the form 4^k(8m + 7)
+            // Answer 4 is the number when the input is of the form 4^k(8m + 7)
+            public static int NSquaresFor4(int n)
+            {
+                //First check if it is a perfect square (the answer will be 1)
+                if (isSquare(n)) return 1;
+
+                //Second, check the 2nd outcome of the theorem
+                var list = Enumerable.Range(1, (int)(Math.Sqrt(n))).ToList();
+                for (int i = 1; i <= list.Count - 1; i++)
+                    if (isSquare(n - (i * i))) return 2;
+
+                //Third, check the fourth outcome of the theorem
+                while (n % 4 == 0) n >>= 2;
+                if (n % 8 == 7) return 4;
+
+                //The only remaining answer can only still be 3...
+                return 3;
+            }
 
         }
 
