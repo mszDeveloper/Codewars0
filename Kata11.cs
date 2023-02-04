@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Codewars0
 {
@@ -51,59 +52,68 @@ namespace Codewars0
         }
 
         //https://www.codewars.com/kata/513e08acc600c94f01000001
-        public static class RGBClass
+        public static string Rgb(int r, int g, int b)
         {
-            public static string Rgb(int r, int g, int b)
+            r = Math.Clamp(r, 0, 255);
+            g = Math.Clamp(g, 0, 255);
+            b = Math.Clamp(b, 0, 255);
+            return DecToHex(r) + DecToHex(g) + DecToHex(b);
+        }
+        static string DecToHex(int number)
+        {
+            if (number == 0) return "00";
+            StringBuilder result = new();
+            while (number > 0)
             {
-                r = Math.Clamp(r, 0, 255);
-                g = Math.Clamp(g, 0, 255);
-                b = Math.Clamp(b, 0, 255);
-
-                string result;
-
-
-
-                return null;
-            }
-
-            static string DecToHex(int n)
-            {
-                StringBuilder result = new();
-                int rem1 = n % 16;
-                switch (rem1)
+                int digit = number % 16;
+                switch (digit)
                 {
-                    case 10: result.Append('A'); break;
-                    case 11: result.Append('B'); break;
-                    case 12: result.Append('C'); break;
-                    case 13: result.Append('D'); break;
-                    case 14: result.Append('E'); break;
-                    case 15: result.Append('F'); break;
-                    default: result.Append(rem1); break;
-                }                
-                n /= 16;
-                while (n > 0)
-                {
-                    int rem = n % 16;
-                    switch (rem)
-                    {
-                        case 10: result.Insert(0, 'A'); break;
-                        case 11: result.Insert(0, 'B'); break;
-                        case 12: result.Insert(0, 'C'); break;
-                        case 13: result.Insert(0, 'D'); break;
-                        case 14: result.Insert(0, 'E'); break;
-                        case 15: result.Insert(0, 'F'); break;
-                        default: result.Insert(0, rem); break;
-                    }
-                    n /= 16;
+                    case 10: result.Insert(0, 'A'); break;
+                    case 11: result.Insert(0, 'B'); break;
+                    case 12: result.Insert(0, 'C'); break;
+                    case 13: result.Insert(0, 'D'); break;
+                    case 14: result.Insert(0, 'E'); break;
+                    case 15: result.Insert(0, 'F'); break;
+                    default: result.Insert(0, digit); break;
                 }
-                return result.ToString();
+                number /= 16;
             }
+            if (result.Length == 1) result.Insert(0, '0');
+            return result.ToString();
+            //public static string Rgb(int r, int g, int b)
+            //{
+            //    r = Math.Max(Math.Min(255, r), 0);
+            //    g = Math.Max(Math.Min(255, g), 0);
+            //    b = Math.Max(Math.Min(255, b), 0);
+            //    return String.Format("{0:X2}{1:X2}{2:X2}", r, g, b);
+            //}
         }
 
+            string result;
 
+            //public static bool IsSquare(int n)
+            //{
+            //    return Math.Sqrt(n) % 1 == 0;
+            //}
 
+            //public static bool IsSquare(int n)
+            //{
+            //    return Math.Sqrt(n) == (int)Math.Sqrt(n);
+            //}
+        }
+        //https://www.codewars.com/kata/55fd2d567d94ac3bc9000064
+        public static long RowSumOddNumbers(long n)
+        {
+            return n * n * n;
+        }
+        //https://www.codewars.com/kata/5a03b3f6a1c9040084001765
+        public static int Angle(int n)
+        {
+            return (n - 2) * 180;
+        }
 
-
+            return null;
+        }
 
     }
 }
