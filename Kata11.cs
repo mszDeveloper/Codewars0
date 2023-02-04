@@ -89,7 +89,7 @@ namespace Codewars0
             //}
         }
 
-            string result;
+            //string result;
 
             //public static bool IsSquare(int n)
             //{
@@ -100,7 +100,7 @@ namespace Codewars0
             //{
             //    return Math.Sqrt(n) == (int)Math.Sqrt(n);
             //}
-        }
+        //}
         //https://www.codewars.com/kata/55fd2d567d94ac3bc9000064
         public static long RowSumOddNumbers(long n)
         {
@@ -112,8 +112,8 @@ namespace Codewars0
             return (n - 2) * 180;
         }
 
-            return null;
-        }
+           // return null;
+        
 
     }
 }
