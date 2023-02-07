@@ -17,7 +17,7 @@ namespace Codewars0
             //bool result = Kata4.PowerOf4(1024);
             //string result = Kata8.JomoPipi.jumbledString("0123456789", 6);
             //var result = Kata11.PowerSumDig.PowerSumDigTerm(7);
-            var result = Kata11.PowerSumDig.Sums(100000);
+            var result = Kata12.IthNondecomp.IthNondecompPrime(100000);
 
             Console.WriteLine("result == ");
             //if (result == null) 
