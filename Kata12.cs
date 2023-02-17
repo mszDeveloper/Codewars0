@@ -82,7 +82,82 @@ namespace Codewars0
 
         }
 
+        //https://www.codewars.com/kata/5a29a0898f27f2d9c9000058
+        public class Solution
+        {
+            public static int[] solve(String s)
+            {
+                int[] result = new int[4];
+                foreach (var item in s)
+                {
+                    if (Char.IsUpper(item)) result[0]++;
+                    else
+                    if (Char.IsLower(item)) result[1]++;
+                    else
+                    if (Char.IsDigit(item)) result[2]++;
+                    else
+                    result[3]++;
+                }
+                return result;
+            }
+        }
+        //https://www.codewars.com/kata/57873ab5e55533a2890000c7
+        public static class Time
+        {
+            public static string Correct(string timeString)
+            {
+                if (timeString == null) return null;
+                if (timeString.Length == 0) return String.Empty;
+                if (!Check(timeString)) return null;
+                int seconds = Convert.ToInt32(timeString[6].ToString() + timeString[7].ToString());
+                int minutes = Convert.ToInt32(timeString[3].ToString() + timeString[4].ToString());
+                int hours = Convert.ToInt32(timeString[0].ToString() + timeString[1].ToString());
 
+                int addMinutes = seconds / 60;
+                seconds -= 60 * addMinutes;
+                minutes += addMinutes;
+
+                int addHours = minutes / 60;
+                minutes -= 60 * addHours;
+                hours += addHours;
+
+                int addDays = hours / 24;
+                hours -= 24 * addDays;
+
+                //minute += second / 60;
+                //second = second % 60;
+
+                //hour += minute / 60;
+                //minute = minute % 60;
+
+                //hour = hour % 24;
+
+                string secondsStr = seconds.ToString();
+                if (secondsStr.Length == 1) secondsStr = "0" + secondsStr;
+                string minutesStr = minutes.ToString();
+                if (minutesStr.Length == 1) minutesStr = "0" + minutesStr;
+                string hoursStr = hours.ToString();
+                if (hoursStr.Length == 1) hoursStr = "0" + hoursStr;
+
+                return hoursStr + ":" + minutesStr + ":" + secondsStr;
+
+            }
+            static bool Check(string s)
+            {
+                //00:00:00
+                if (
+                    s.Length != 8
+                    || s[2] != ':'
+                    || s[5] != ':'
+                    ) return false;
+                for (int i = 0; i < s.Length; i++)
+                {
+                    if (i == 2 || i == 5) continue;
+                    if (!Char.IsDigit(s[i])) return false;
+                }
+                return true;
+            }
+        }
 
 
 
