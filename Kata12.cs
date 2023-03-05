@@ -159,8 +159,40 @@ namespace Codewars0
             }
         }
 
+        //https://www.codewars.com/kata/59e9f404fc3c49ab24000112
+        public static string Nerdify(string str)
+        {
+            if(str == null) throw new ArgumentNullException();
+            char[] result = str.ToArray();
+            for (int i = 0; i < str.Length; i++)
+            {
+                char c = result[i];
+                switch (result[i])
+                {
+                    case 'a': c = '4'; break;
+                    case 'A': c = '4'; break;
+                    case 'e': c = '3'; break;
+                    case 'E': c = '3'; break;
+                    case 'l': c = '1'; break;
+                    default: continue;
+                }
+                result[i] = c;
+            }
+            return new string(result);
+        }
+        //https://www.codewars.com/kata/51f2d1cafc9c0f745c00037d
+        public static bool Solution1(string str, string ending)
+        {
+            if (str.Length < ending.Length) return false;
+            if (ending.Length == 0) return true;
+            for (int i = ending.Length - 1, j = str.Length - 1; i >= 0; i--, j--)
+            {
+                if (str[j] != ending[i]) return false;
+            }
+            return true;
 
-
+            //return str.EndsWith(ending);
+        }
 
 
 
