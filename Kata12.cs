@@ -193,7 +193,20 @@ namespace Codewars0
 
             //return str.EndsWith(ending);
         }
-
+        //https://www.codewars.com/kata/545afd0761aa4c3055001386
+        public static int[] Take(int[] arr, int n)
+        {
+            if (arr.Length < n)
+            {
+                return arr;
+            }
+            int[] result = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                result[i] = arr[i];
+            }
+            return result;
+        }
 
 
 
