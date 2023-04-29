@@ -159,21 +159,40 @@ namespace Codewars0
             }
         }
 
-        //https://www.codewars.com/kata/545afd0761aa4c3055001386
-        public static int[] Take(int[] arr, int n)
+        //https://www.codewars.com/kata/59e9f404fc3c49ab24000112
+        public static string Nerdify(string str)
         {
-            if (arr.Length < n)
+            if(str == null) throw new ArgumentNullException();
+            char[] result = str.ToArray();
+            for (int i = 0; i < str.Length; i++)
             {
-                return arr;
+                char c = result[i];
+                switch (result[i])
+                {
+                    case 'a': c = '4'; break;
+                    case 'A': c = '4'; break;
+                    case 'e': c = '3'; break;
+                    case 'E': c = '3'; break;
+                    case 'l': c = '1'; break;
+                    default: continue;
+                }
+                result[i] = c;
             }
-            int[] result = new int[n];
-            for (int i = 0; i < n; i++)
-            {
-                result[i] = arr[i];
-            }
-            return result;
+            return new string(result);
         }
+        //https://www.codewars.com/kata/51f2d1cafc9c0f745c00037d
+        public static bool Solution1(string str, string ending)
+        {
+            if (str.Length < ending.Length) return false;
+            if (ending.Length == 0) return true;
+            for (int i = ending.Length - 1, j = str.Length - 1; i >= 0; i--, j--)
+            {
+                if (str[j] != ending[i]) return false;
+            }
+            return true;
 
+            //return str.EndsWith(ending);
+        }
 
 
 
