@@ -208,7 +208,42 @@ namespace Codewars0
             return result;
         }
 
+        //https://www.codewars.com/kata/63f96036b15a210058300ca9
+        public static int SecondSymbol(string str, char symbol)
+        {
+            if (str.Length == 0)
+            {
+                return -1;
+            }
 
+            for (int i = 0; i < str.Length - 1; i++)
+            {
+                if (str[i] != symbol)
+                {
+                    continue;
+                }
+                for (int j = i + 1; j < str.Length; j++)
+                {
+                    if (str[i] == str[j])
+                    {
+                        return j;
+                    }
+                }
+            }
+            return -1;
+            /**
+             *   
+                public static int SecondSymbol(string str, char symbol)
+                  {
+                    int occur = 0;
+                    for (int i = 0; i < str.Length; i++) {
+                      if (str[i] == symbol) occur++;
+                      if (occur == 2) return i;
+                    }
+                    return -1;
+                  }
+            */
+        }
 
 
 
