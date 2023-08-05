@@ -8,3 +8,4 @@ int main()
     unsigned long result = Kata::findNextPower(4782969, 7);
     std::cout << "result == " << std::endl;
     std::cout << result << std::endl;
+}
