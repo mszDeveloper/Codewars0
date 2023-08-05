@@ -9,4 +9,4 @@ def fib(n):
         b = temp + a
     return a
 
-print(fib(10))
+
