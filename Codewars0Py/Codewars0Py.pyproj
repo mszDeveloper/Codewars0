@@ -23,11 +23,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Codewars0Py.py" />
-    <Compile Include="FibonacciReloaded.py" />
     <Compile Include="Kata.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SquareSumSimple.py" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
